@@ -27,7 +27,6 @@ public class ControllerFacade /*implements IController*/ {
      *            the model
      */
     public ControllerFacade(final IView view, final IModel model) {
-        super();
         this.view = view;
         this.model = model;
     }

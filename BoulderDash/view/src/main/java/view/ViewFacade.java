@@ -15,6 +15,7 @@ import model.IMap;
 import model.IMobile;
 import model.UserOrder;
 import view.IOrderPerformer;
+import view.IView;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
