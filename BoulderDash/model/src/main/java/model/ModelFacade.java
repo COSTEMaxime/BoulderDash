@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,38 +14,35 @@ import model.dao.ExampleDAO;
  */
 public class ModelFacade implements IModel {
 
-    /**
-     * Instantiates a new model facade.
-     */
-    public ModelFacade() {
-        super();
-    }
+	private IMap map;
 
-    /*
-     * (non-Javadoc)
-     * @see model.IModel#getExampleById(int)
-     */
-    @Override
-    public Example getExampleById(final int id) throws SQLException {
-        return ExampleDAO.getExampleById(id);
-    }
+	private IMobile myCharacter;
 
-    /*
-     * (non-Javadoc)
-     * @see model.IModel#getExampleByName(java.lang.String)
-     */
-    @Override
-    public Example getExampleByName(final String name) throws SQLException {
-        return ExampleDAO.getExampleByName(name);
-    }
+	/**
+	 * Instantiates a new model facade.
+	 */
+	public ModelFacade(final String nomMap) {
+		this.setMap(new Map(nomMap));
+		//TODO récupèrer les coordonnées de départ dans la BDD
+		//this.setMyCharacter(new Character(,, this.getMap()));
+	}
+	
+	@Override
+	public IMobile getMyCharacter() {
+		return this.myCharacter;
+	}
+	
+	private void setMyCharacter(final IMobile character)	{
+		this.myCharacter = character;
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see model.IModel#getAllExamples()
-     */
-    @Override
-    public List<Example> getAllExamples() throws SQLException {
-        return ExampleDAO.getAllExamples();
-    }
+	@Override
+	public IMap getMap() {
+		return this.map;
+	}
+
+	private void setMap(final Map map) {
+		this.map = map;
+	}
 
 }

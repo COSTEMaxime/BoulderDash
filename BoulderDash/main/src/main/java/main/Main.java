@@ -1,9 +1,12 @@
 package main;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import controller.ControllerFacade;
+import model.IModel;
 import model.ModelFacade;
+import view.IView;
 import view.ViewFacade;
 
 /**
@@ -19,9 +22,13 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws IOException 
      */
-    public static void main(final String[] args) {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+    public static void main(final String[] args) throws IOException {
+    	
+    	final IModel model = new ModelFacade("level1");
+    	final IView view = new ViewFacade(model.getMap(), model.getMyCharacter());
+        final ControllerFacade controller = new ControllerFacade(view, model);
 
         try {
             controller.start();

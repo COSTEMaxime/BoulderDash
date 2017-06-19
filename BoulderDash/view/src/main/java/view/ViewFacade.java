@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,9 +9,12 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import fr.exia.showboard.BoardFrame;
+import fr.exia.showboard.ISquare;
 import model.IMap;
 import model.IMobile;
 import model.UserOrder;
+import view.IOrderPerformer;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
@@ -22,9 +26,11 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	private static final int squareSize = 50;
 
-	private static final int widthView = 20;
+	private static final int borderOffset = 6;
 
-	private static final int heightView = 20;
+	private static final int widthView = 16;
+
+	private static final int heightView = 16;
 
 	private Rectangle closeView;
 
@@ -36,16 +42,18 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	private int yView;
 
-	private UserOrder orderPerformer;
+	private IOrderPerformer orderPerformer;
 
 	/**
 	 * Instantiates a new view facade.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public ViewFacade(final IMap map, final IMobile character) throws IOException {
 		this.setMap(map);
 		this.setMyCharacter(character);
-		this.followMyCharacter();
+		this.setXView(ViewFacade.borderOffset);
+		this.setYView(ViewFacade.borderOffset);
 		this.getMyCharacter().getSprite().loadImage();
 		this.setCloseView(new Rectangle(xView, yView, widthView, heightView));
 		SwingUtilities.invokeLater(this);
@@ -63,22 +71,42 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
+		final BoardFrame boardFrame = new BoardFrame("Boulderdash");
+        boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
+        boardFrame.setDisplayFrame(this.closeView);
+        boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
+        boardFrame.setHeightLooped(true);
+        boardFrame.addKeyListener(this);
+        boardFrame.setFocusable(true);
+        boardFrame.setFocusTraversalKeysEnabled(false);
 
-	}
+        for (int x = 0; x < this.getMap().getWidth(); x++) {
+            for (int y = 0; y < this.getMap().getHeight(); y++) {
+            	//TODO
+                boardFrame.addSquare((ISquare) this.getMap().getMapXY(x, y), x, y);
+            }
+        }
+        boardFrame.addPawn(this.getMyCharacter());
+        this.getMap().getObservable().addObserver(boardFrame.getObserver());
+        this.followMyCharacter();
 
-	public final void show(final int yStart, final int xStart) {
+        boardFrame.setVisible(true);
 
 	}
 
 	public final void followMyCharacter() {
-		if (getMyCharacter().getX() >= ViewFacade.widthView / 2
-				&& getMyCharacter().getX() <= this.getMap().getWidth() - ViewFacade.widthView / 2)
-			this.setXView(getMyCharacter().getX() - ViewFacade.widthView / 2);
-		if (getMyCharacter().getY() >= ViewFacade.heightView / 2
-				&& getMyCharacter().getY() <= this.getMap().getHeight() - ViewFacade.heightView / 2)
-			this.setYView(getMyCharacter().getY() - ViewFacade.heightView / 2);
+		if (getMyCharacter().getX() < ViewFacade.borderOffset)
+			this.setXView(this.getXView() + 1);
 
+		if (getMyCharacter().getX() > this.getMap().getWidth() - ViewFacade.borderOffset)
+			this.setXView(getXView() - 1);
+
+		if (getMyCharacter().getY() < ViewFacade.borderOffset)
+			this.setYView(this.getYView() + 1);
+
+		if (getMyCharacter().getY() > this.getMap().getHeight() - ViewFacade.borderOffset)
+			this.setYView(getYView() - 1);
 	}
 
 	private static UserOrder keyCodeToUserOrder(final int keyCode) {
@@ -97,20 +125,21 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+	public void keyPressed(KeyEvent keyEvent) {
+		try {
+            this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
+        } catch (final IOException exception) {
+            exception.printStackTrace();
+        }
+	}
+
+	@Override
+	public void keyReleased(KeyEvent keyEvent) {
 
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+	public void keyTyped(KeyEvent keyEvent) {
 
 	}
 
@@ -142,4 +171,15 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 		this.xView = xView;
 	}
 
+	private int getXView() {
+		return this.xView;
+	}
+
+	private int getYView() {
+		return this.yView;
+	}
+	
+	private IOrderPerformer getOrderPerformer() {
+		return orderPerformer;
+	}
 }
