@@ -25,6 +25,7 @@ public class Sprite {
 	private boolean imageLoaded;
 
 	public Sprite(final char character, final int index, final int world) {
+		
 		this.initImageTab();
 		this.setConsoleImage(character);
 		this.setImageSet(index, world);
@@ -32,8 +33,7 @@ public class Sprite {
 
 	private void setImageSet(final int index, final int world) {
 
-		int i = 0;
-		while (i++ < 4) {
+		for(int i = 0; i < 4; i++) {
 			try {
 				this.loadImage(index, world * 4 + i, i);
 			} catch (IOException e) {

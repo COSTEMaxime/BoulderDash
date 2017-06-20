@@ -19,9 +19,17 @@ public class Map extends Observable implements IMap {
 	private void loadFromBDD(final String nomMap) {
 
 		// TEST
+		this.setHeight(10);
+		this.setWidth(10);
+		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
 
 		
-		
+		for (int y = 0; y < this.getHeight(); y++) {
+			for (int x = 0; x < this.getWidth(); x++) {
+				this.setOnTheMapXY(MotionlessFactory.getFromFileSymbol('S'), x, y);
+			}
+		}
+
 		// ENDTEST
 
 		// JDBC jdbc = new JDBC();
@@ -83,7 +91,7 @@ public class Map extends Observable implements IMap {
 		return this;
 	}
 
-	private void setOnTheRoadXY(final IElement element, final int x, final int y) {
+	private void setOnTheMapXY(final IElement element, final int x, final int y) {
 		this.onTheMap[x][y] = element;
 	}
 

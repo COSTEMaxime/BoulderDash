@@ -1,12 +1,18 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import fr.exia.showboard.BoardFrame;
@@ -14,6 +20,7 @@ import fr.exia.showboard.ISquare;
 import model.IMap;
 import model.IMobile;
 import model.UserOrder;
+import model.element.motionless.MotionlessFactory;
 import view.IOrderPerformer;
 import view.IView;
 
@@ -29,9 +36,9 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	private static final int borderOffset = 6;
 
-	private static final int widthView = 16;
+	private static final int widthView = 10;
 
-	private static final int heightView = 16;
+	private static final int heightView = 10;
 
 	private Rectangle closeView;
 
@@ -77,6 +84,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 		
 		final BoardFrame boardFrame = new BoardFrame("Boulderdash");
         boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
+        System.out.println(this.getMap().getWidth() + " " + this.getMap().getHeight());
         boardFrame.setDisplayFrame(this.closeView);
         boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
         boardFrame.setHeightLooped(true);
@@ -84,19 +92,50 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         boardFrame.setFocusable(true);
         boardFrame.setFocusTraversalKeysEnabled(false);
 
-        for (int x = 0; x < this.getMap().getWidth(); x++) {
-            for (int y = 0; y < this.getMap().getHeight(); y++) {
-            	//TODO
-                boardFrame.addSquare((ISquare) this.getMap().getMapXY(x, y), x, y);
+        
+        boardFrame.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		System.out.println("----------");
+        		boardFrame.invalidate();
+        		boardFrame.repaint();
+        	}
+		});
+        
+        
+        
+        
+        for (int y = 0; y < this.getMap().getHeight(); y++) {
+            for (int x = 0; x < this.getMap().getWidth(); x++) {
+                boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
+                System.out.println(x + " " + y);
             }
         }
-        boardFrame.addPawn(this.getMyCharacter());
+        
+        System.out.println(boardFrame.getWidth() + " " + boardFrame.getHeight()); 
+        
+        //debug
+        System.out.println(this.getMap().getMapXY(0, 0).getImage(0));
+        this.show();
+        
+        //boardFrame.addPawn(this.getMyCharacter());
         this.getMap().getObservable().addObserver(boardFrame.getObserver());
-        this.followMyCharacter();
-
+        //this.followMyCharacter();
+        
         boardFrame.setVisible(true);
 
 	}
+	
+	public final void show() {
+		
+        for (int y = 0; y < this.getMap().getHeight(); y++) {
+            for (int x = 0; x < this.getMap().getWidth(); x++) {
+                    System.out.print(this.getMap().getMapXY(x, y).getSprite().getConsoleImage());
+                }
+            System.out.print("\n");
+            }
+            
+        }
 
 	public final void followMyCharacter() {
 		if (getMyCharacter().getX() < ViewFacade.borderOffset)
