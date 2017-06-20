@@ -21,34 +21,40 @@ public class MotionlessFactory {
 	};
 	
 	public static Motionless createEarth() {
-		return null;
+		return EARTH;
 	}
 	
 	public static Motionless createAir() {
-		return null;
+		return AIR;
 	}
 	
 	public static Motionless createWall() {
-		return null;
+		return WALL;
 	}
 	
 	public static Motionless createSpecialWall() {
-		return null;
+		return SPECIAL_WALL;
 	}
 	
 	public static Motionless createDoor() {
-		return null;
+		return DOOR;
 	}
 	
 	public static Motionless createAmoeba() {
-		return null;
+		return AMOEBA;
 	}
 	
 	public static Motionless createExplosion() {
-		return null;
+		return EXPLOSION;
 	}
 	
-	public static Motionless getFileFromSymbol() {
-		return null;
+	public static Motionless getFileFromSymbol(final char fileSymbol) {
+		
+		for(Motionless motionless : MotionlessElements) {
+			if(motionless.getSprite(0).getConsoleImage() == fileSymbol) {
+				return motionless;
+			}
+		}
+		return AIR;
 	}
 }
