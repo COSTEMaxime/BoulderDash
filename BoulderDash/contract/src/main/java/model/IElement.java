@@ -6,8 +6,7 @@ public interface IElement {
 	
 	Sprite getSprite();
 	
-	Permeability getPermeability();
+	model.Permeability getPermeability();
 	
 	Image getImage();
-
 }

@@ -51,7 +51,7 @@ public class MotionlessFactory {
 	public static Motionless getFileFromSymbol(final char fileSymbol) {
 		
 		for(Motionless motionless : MotionlessElements) {
-			if(motionless.getSprite(0).getConsoleImage() == fileSymbol) {
+			if(motionless.getSprite().getConsoleImage() == fileSymbol) {
 				return motionless;
 			}
 		}

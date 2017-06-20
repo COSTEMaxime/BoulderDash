@@ -1,10 +1,13 @@
 package model.element.motionless;
 
-import model.element.Permeability;
+import model.Sprite;
+import model.SpritesPositions;
 
 public class Wall extends Motionless {
 
+	private static final Sprite sprite = new Sprite('W', SpritesPositions.WALL.ordinal(), 1);
+	
 	public Wall() {
-		super(null, Permeability.BLOCKING);
+		super(sprite, model.Permeability.BLOCKING);
 	}
 }

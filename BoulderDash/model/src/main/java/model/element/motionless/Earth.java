@@ -1,10 +1,13 @@
 package model.element.motionless;
 
-import model.element.Permeability;
+import model.Sprite;
+import model.SpritesPositions;
 
 public class Earth extends Motionless {
 
+	private static final Sprite sprite = new Sprite('.', SpritesPositions.EARTH.ordinal(), 1);
+	
 	public Earth() {
-		super(null, Permeability.BLOCKING);
+		super(sprite, model.Permeability.BLOCKING);
 	}
 }
