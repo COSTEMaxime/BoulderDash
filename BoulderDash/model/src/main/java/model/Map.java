@@ -4,16 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
 
-public class Map extends Observable implements IMap{
+public class Map extends Observable implements IMap {
 	
 	private int width;
-	
 	private int height;
-	
 	private IElement[][] onTheMap;
 	
-	Map (final String nomMap)	{
-		loadFromBDD(nomMap);
+	public Map (final String mapName)	{
+		loadFromBDD(mapName);
 	}
 
 	private void loadFromBDD(final String nomMap) {
