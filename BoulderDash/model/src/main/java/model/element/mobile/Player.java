@@ -1,17 +1,19 @@
 package model.element.mobile;
 
 import model.IMap;
+import model.Sprite;
+import model.element.Permeability;
 
 public class Player extends Mobile {
 
+	private static Sprite[] sprite;
 	private int score;
 	
 	public Player(int x, int y, IMap map) {
-		
+		super(x, y, sprite, map, Permeability.BLOCKING);
 	}
 	
 	public void moveUp() {
-		
 		
 	}
 	

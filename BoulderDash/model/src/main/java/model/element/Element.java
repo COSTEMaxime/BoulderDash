@@ -1,23 +1,25 @@
 package model.element;
 
 import java.awt.Image;
+import java.util.ArrayList;
 
 import model.Sprite;
 
 public class Element {
 
-	private Sprite sprite;
+	private Sprite[] sprite;
 	private Permeability permeability;
 	
-	public Element(Sprite sprite, Permeability permeability) {
-		super();
+	public Element(Sprite[] sprite, Permeability permeability) {
+		this.setSprite(sprite);
+		this.setPermeability(permeability);
 	}
 
-	public Sprite getSprite() {
-		return sprite;
+	public Sprite getSprite(int position) {
+		return sprite[position];
 	}
 
-	public void setSprite(Sprite sprite) {
+	public void setSprite(Sprite[] sprite) {
 		this.sprite = sprite;
 	}
 

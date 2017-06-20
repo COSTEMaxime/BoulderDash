@@ -16,8 +16,6 @@ public class Map extends Observable implements IMap {
 
 	private void loadFromBDD(final String nomMap) {
 		
-		
-		
 //		JDBC jdbc = new JDBC();
 
 //		ResultSet result = jdbc.lireLigneBDD(nomMap);
