@@ -7,19 +7,19 @@ import model.Sprite;
 
 public class Element implements IElement {
 
-	private Sprite[] sprite;
+	private Sprite sprite;
 	private model.Permeability permeability;
 	
-	public Element(Sprite[] sprite, model.Permeability permeability) {
+	public Element(Sprite sprite, model.Permeability permeability) {
 		this.setSprite(sprite);
 		this.setPermeability(permeability);
 	}
 
-	public Sprite getSprite(int position) {
-		return sprite[position];
+	public Sprite getSprite() {
+		return sprite;
 	}
 
-	public void setSprite(Sprite[] sprite) {
+	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
 	}
 

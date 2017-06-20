@@ -5,7 +5,7 @@ import model.element.Element;
 
 public class Motionless extends Element {
 
-	public Motionless(Sprite[] sprite, model.Permeability permeability) {
+	public Motionless(Sprite sprite, model.Permeability permeability) {
 		super(sprite, permeability);
 	}
 }

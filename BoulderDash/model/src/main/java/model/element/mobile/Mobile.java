@@ -15,13 +15,13 @@ public abstract class Mobile extends Element implements IMobile {
 	private IMap map;
 	private IBoard board;
 	
-	public Mobile(Sprite[] sprite, IMap map, model.Permeability permeability) {
+	public Mobile(Sprite sprite, IMap map, model.Permeability permeability) {
 		super(sprite, permeability);
 		this.map = map;
 		this.position = new Point(0,0);
 	}
 	
-	public Mobile(int x, int y, Sprite[] sprite, IMap map, model.Permeability permeability) {
+	public Mobile(int x, int y, Sprite sprite, IMap map, model.Permeability permeability) {
 		super(sprite, permeability);
 		this.setMap(map);
 		this.position = new Point(x,y);
