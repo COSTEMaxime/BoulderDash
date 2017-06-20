@@ -55,7 +55,9 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 		this.setMyCharacter(character);
 		this.setXView(ViewFacade.borderOffset);
 		this.setYView(ViewFacade.borderOffset);
-		this.getMyCharacter().getSprite(0).loadImage();
+
+		//changer méthode pour le personnage
+		//this.getMyCharacter().getSprite().loadImage();
 		this.setCloseView(new Rectangle(xView, yView, widthView, heightView));
 		SwingUtilities.invokeLater(this);
 	}
