@@ -26,6 +26,8 @@ import view.IView;
 public class ViewFacade implements IView, Runnable, KeyListener {
 
 	private static final int squareSize = 50;
+	
+	public static final int spriteSize = 16;
 
 	private static final int borderOffset = 6;
 
@@ -55,7 +57,8 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 		this.setMyCharacter(character);
 		this.setXView(ViewFacade.borderOffset);
 		this.setYView(ViewFacade.borderOffset);
-		this.getMyCharacter().getSprite().loadImage();
+		//changer méthode pour le personnage
+		//this.getMyCharacter().getSprite().loadImage();
 		this.setCloseView(new Rectangle(xView, yView, widthView, heightView));
 		SwingUtilities.invokeLater(this);
 	}
