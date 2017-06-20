@@ -16,7 +16,6 @@ public class Sprite {
 	
 	private static final int spriteSize = 16;
 
-	/** The image. */
 	private Image[] image;
 
 	/** The console image. */
@@ -25,14 +24,6 @@ public class Sprite {
 	/** The is image loaded. */
 	private boolean imageLoaded;
 
-	/**
-	 * Instantiates a new sprite.
-	 *
-	 * @param character
-	 *            the character
-	 * @param imageName
-	 *            the image name
-	 */
 	public Sprite(final char character, final int index, final int world) {
 		this.initImageTab();
 		this.setConsoleImage(character);
@@ -56,41 +47,19 @@ public class Sprite {
 		this.image = new Image[4];
 	}
 
-	/**
-	 * Gets the image.
-	 *
-	 * @return the image
-	 */
-	public final Image getImage(int index) {
+	public final Image getImage(final int index) {
 		return this.image[index];
 	}
 
-	/**
-	 * Loads image.
-	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
 	public final void loadImage(final int x, final int y, final int index) throws IOException {
 		this.setImage(ImageIO.read(new File("images/74359.png")).getSubimage(x * Sprite.spriteSize,
 				y * Sprite.spriteSize, Sprite.spriteSize, Sprite.spriteSize), index);
 	}
 
-	/**
-	 * Gets the console image.
-	 *
-	 * @return the consoleImage
-	 */
 	public final char getConsoleImage() {
 		return this.consoleImage;
 	}
 
-	/**
-	 * Sets the image.
-	 *
-	 * @param image
-	 *            the new image
-	 */
 	private void setImage(final Image image, final int index) {
 		this.image[index] = image;
 	}

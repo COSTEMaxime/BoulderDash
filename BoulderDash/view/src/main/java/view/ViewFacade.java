@@ -26,8 +26,6 @@ import view.IView;
 public class ViewFacade implements IView, Runnable, KeyListener {
 
 	private static final int squareSize = 50;
-	
-	public static final int spriteSize = 16;
 
 	private static final int borderOffset = 6;
 
