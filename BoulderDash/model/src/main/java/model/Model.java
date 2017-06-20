@@ -1,12 +1,20 @@
 package model;
 
-public class Model {
+import model.element.mobile.Player;
+
+public class Model implements IModel {
 	
 	private IMap map;
 	private IMobile player;
 	
+	// startX and startY = player starting point
 	public Model(String fileName) {
 		
+		// Create new map
+		this.setMap(new Map(fileName));
+		
+		// Set player start point
+		this.setPlayer(new Player(0, 0, this.getMap()));
 	}
 
 	public IMap getMap() {
@@ -18,7 +26,7 @@ public class Model {
 	}
 
 	public IMobile getPlayer() {
-		return player;
+		return this.player;
 	}
 
 	public void setPlayer(IMobile player) {

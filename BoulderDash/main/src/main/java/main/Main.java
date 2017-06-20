@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import controller.ControllerFacade;
 import model.IModel;
-import model.ModelFacade;
+import model.Model;
 import view.IView;
 import view.ViewFacade;
 
@@ -26,8 +26,8 @@ public abstract class Main {
      */
     public static void main(final String[] args) throws IOException {
     	
-    	final IModel model = new ModelFacade("level1");
-    	final IView view = new ViewFacade(model.getMap(), model.getMyCharacter());
+    	final IModel model = new Model("level1");
+    	final IView view = new ViewFacade(model.getMap(), model.getPlayer());
         final ControllerFacade controller = new ControllerFacade(view, model);
 
         try {

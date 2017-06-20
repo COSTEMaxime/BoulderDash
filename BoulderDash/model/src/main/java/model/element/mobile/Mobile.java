@@ -4,24 +4,24 @@ import java.awt.Point;
 
 import model.IBoard;
 import model.IMap;
+import model.IMobile;
 import model.Sprite;
 import model.element.Element;
-import model.element.Permeability;
 
-public class Mobile extends Element {
+public abstract class Mobile extends Element implements IMobile {
 
 	private boolean alive = true;
 	private Point position;
 	private IMap map;
 	private IBoard board;
 	
-	public Mobile(Sprite[] sprite, IMap map, Permeability permeability) {
+	public Mobile(Sprite[] sprite, IMap map, model.Permeability permeability) {
 		super(sprite, permeability);
 		this.map = map;
 		this.position = new Point(0,0);
 	}
 	
-	public Mobile(int x, int y, Sprite[] sprite, IMap map, Permeability permeability) {
+	public Mobile(int x, int y, Sprite[] sprite, IMap map, model.Permeability permeability) {
 		super(sprite, permeability);
 		this.setMap(map);
 		this.position = new Point(x,y);
@@ -83,7 +83,7 @@ public class Mobile extends Element {
 		this.map = map;
 	}
 
-	public boolean isAlive() {
+	public Boolean isAlive() {
 		return alive;
 	}
 

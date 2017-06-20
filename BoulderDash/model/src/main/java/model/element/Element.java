@@ -1,16 +1,16 @@
 package model.element;
 
 import java.awt.Image;
-import java.util.ArrayList;
 
+import model.IElement;
 import model.Sprite;
 
-public class Element {
+public class Element implements IElement {
 
 	private Sprite[] sprite;
-	private Permeability permeability;
+	private model.Permeability permeability;
 	
-	public Element(Sprite[] sprite, Permeability permeability) {
+	public Element(Sprite[] sprite, model.Permeability permeability) {
 		this.setSprite(sprite);
 		this.setPermeability(permeability);
 	}
@@ -23,11 +23,11 @@ public class Element {
 		this.sprite = sprite;
 	}
 
-	public Permeability getPermeability() {
+	public model.Permeability getPermeability() {
 		return permeability;
 	}
 
-	public void setPermeability(Permeability permeability) {
+	public void setPermeability(model.Permeability permeability) {
 		this.permeability = permeability;
 	}
 	

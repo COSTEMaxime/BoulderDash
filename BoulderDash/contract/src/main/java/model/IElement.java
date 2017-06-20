@@ -4,10 +4,9 @@ import java.awt.Image;
 
 public interface IElement {
 	
-	Sprite getSprite();
+	Sprite getSprite(int position);
 	
-	Permeability getPermeability();
+	model.Permeability getPermeability();
 	
 	Image getImage();
-
 }

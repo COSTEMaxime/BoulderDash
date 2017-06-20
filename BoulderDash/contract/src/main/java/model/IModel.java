@@ -10,6 +10,5 @@ public interface IModel {
 
     
     IMap getMap();
-
-    IMobile getMyCharacter();
+    IMobile getPlayer();
 }
