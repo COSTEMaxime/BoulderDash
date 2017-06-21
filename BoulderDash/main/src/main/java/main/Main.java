@@ -33,5 +33,4 @@ public abstract class Main {
         view.setOrderPerformer(controller.getOrderPerformer());
         controller.play();
     }
-
 }

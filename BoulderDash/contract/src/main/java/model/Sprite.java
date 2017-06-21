@@ -30,6 +30,24 @@ public class Sprite {
 		this.setConsoleImage(character);
 		this.setImageSet(index, world);
 	}
+	
+	public Sprite(final UserOrder userOrder)	{
+		this.initImageTab();
+		this.setConsoleImage('+');
+		this.setImageSet(userOrder);
+	}
+
+	private void setImageSet(final UserOrder userOrder) {
+		/*
+		for(int i = 0; i < 4; i++) {
+			try {
+				this.loadImage(x, y, i);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}*/
+		this.setImageLoaded(true);
+	}
 
 	private void setImageSet(final int index, final int world) {
 
@@ -52,7 +70,7 @@ public class Sprite {
 	}
 
 	public final void loadImage(final int x, final int y, final int index) throws IOException {
-		this.setImage(ImageIO.read(new File("images/74359.png")).getSubimage(x * Sprite.spriteSize,
+		this.setImage(ImageIO.read(new File("images/objects.png")).getSubimage(x * Sprite.spriteSize,
 				y * Sprite.spriteSize, Sprite.spriteSize, Sprite.spriteSize), index);
 	}
 

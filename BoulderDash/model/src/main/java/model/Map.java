@@ -4,6 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
 
+import model.element.mobile.Mobile;
+import model.element.mobile.Player;
+import model.element.mobile.gravity.Diamond;
+import model.element.mobile.gravity.Gravity;
+import model.element.mobile.gravity.Rock;
+import model.element.motionless.Air;
 import model.element.motionless.MotionlessFactory;
 
 public class Map extends Observable implements IMap {
@@ -23,10 +29,45 @@ public class Map extends Observable implements IMap {
 		this.setWidth(10);
 		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
 
-		
 		for (int y = 0; y < this.getHeight(); y++) {
 			for (int x = 0; x < this.getWidth(); x++) {
 				this.setOnMapXY(MotionlessFactory.getFromFileSymbol('S'), x, y);
+			}
+		}
+	}
+
+	@Override
+	public void update() {
+
+		for (int y = this.getHeight() - 2; y >= 0; y--) {
+			for (int x = 0; x < this.getWidth(); x++) {
+				//si l'objet est un diamant ou un rocher
+				if(this.getMapXY(x, y).getClass().isInstance(Diamond.class) || this.getMapXY(x, y).getClass().isInstance(Rock.class))
+					//si il y a de l'air juste en dessous alors il tombe
+					if(this.getMapXY(x, y+1).getClass().isInstance(Air.class))	{
+						((Gravity) this.getMapXY(x, y)).setFalling(true);
+						this.setOnMapXY(this.getMapXY(x, y), x, y+1);
+						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+					//si il y a le joueur en dessous et que l'objet est déjà en train de tomber
+					} else if (this.getMapXY(x, y+1).getClass().isInstance(Player.class) && ((Gravity) this.getMapXY(x, y)).isFalling())	{
+						((Player) this.getMapXY(x, y+1)).die();
+						this.setOnMapXY(this.getMapXY(x, y), x, y+1);
+						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+					} else if (this.getMapXY(x, y+1).getClass().isInstance(Rock.class))	{
+						
+						//si il peut aller sur la gauche
+						if(this.getMapXY(x-1, y).getClass().isInstance(Air.class) && this.getMapXY(x-1, y+1).getClass().isInstance(Air.class)){
+							this.setOnMapXY(element, x, y);
+							
+						} else if(this.getMapXY(x+1, y).getClass().isInstance(Air.class) && this.getMapXY(x+1, y+1).getClass().isInstance(Air.class)){
+							
+						}
+						//si il peut aller sur la droite
+						
+					} else	{
+						//l'objet ne tombe plus
+						((Gravity) this.getMapXY(x, y)).setFalling(false);
+					}
 			}
 		}
 	}

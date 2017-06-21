@@ -6,7 +6,11 @@ import model.Sprite;
 import model.SpritesPositions;
 import model.element.mobile.Mobile;
 
+<<<<<<< HEAD
 public class Diamond extends Mobile implements Gravity {
+=======
+public class Diamond implements Gravity{
+>>>>>>> branch 'master' of https://github.com/COSTEMaxime/BoulderDash.git
 
 	private static final Sprite sprite = new Sprite('X', SpritesPositions.DIAMOND.ordinal(), 1);
 
@@ -24,6 +28,23 @@ public class Diamond extends Mobile implements Gravity {
 	public void setFalling(boolean falling) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private boolean falling;
+	
+	public Diamond() {
+		this.setFalling(false);
+	}
+	
+
+	@Override
+	public boolean isFalling() {
+		return this.falling;
+	}
+
+	@Override
+	public void setFalling(boolean falling) {
+		this.falling = falling;
 	}
 	
 }
