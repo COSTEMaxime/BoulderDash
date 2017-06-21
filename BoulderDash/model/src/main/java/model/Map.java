@@ -54,11 +54,18 @@ public class Map extends Observable implements IMap {
 						this.setOnMapXY(this.getMapXY(x, y), x, y+1);
 						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
 					} else if (this.getMapXY(x, y+1).getClass().isInstance(Rock.class))	{
-						//si il peut aller sur la gauche
 						
+						//si il peut aller sur la gauche
+						if(this.getMapXY(x-1, y).getClass().isInstance(Air.class) && this.getMapXY(x-1, y+1).getClass().isInstance(Air.class)){
+							this.setOnMapXY(element, x, y);
+							
+						} else if(this.getMapXY(x+1, y).getClass().isInstance(Air.class) && this.getMapXY(x+1, y+1).getClass().isInstance(Air.class)){
+							
+						}
 						//si il peut aller sur la droite
 						
 					} else	{
+						//l'objet ne tombe plus
 						((Gravity) this.getMapXY(x, y)).setFalling(false);
 					}
 			}
