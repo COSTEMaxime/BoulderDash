@@ -19,8 +19,8 @@ public class Map extends Observable implements IMap {
 	private void loadFromBDD(final String nomMap) {
 
 		// TEST
-		this.setHeight(1);
-		this.setWidth(1);
+		this.setHeight(10);
+		this.setWidth(10);
 		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
 
 		
