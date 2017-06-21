@@ -26,13 +26,13 @@ import view.IView;
  */
 public class ViewFacade implements IView, Runnable, KeyListener {
 
-	private static final int squareSize = 200;
+	private static final int squareSize = 50;
 
 	private static final int borderOffset = 6;
 
-	private static final int widthView = 1;
+	private static final int widthView = 10;
 
-	private static final int heightView = 1;
+	private static final int heightView = 10;
 
 	private Rectangle closeView;
 
@@ -98,7 +98,6 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         for (int y = 0; y < this.getMap().getHeight(); y++) {
             for (int x = 0; x < this.getMap().getWidth(); x++) {
                 boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
-                System.out.println("lol");
             }
         } 
         
@@ -155,6 +154,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent keyEvent) {
 		try {
+			System.out.println(keyEvent.getKeyCode());
             this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
         } catch (final IOException exception) {
             exception.printStackTrace();
@@ -208,6 +208,6 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	}
 	
 	private IOrderPerformer getOrderPerformer() {
-		return orderPerformer;
+		return this.orderPerformer;
 	}
 }

@@ -23,18 +23,15 @@ public abstract class Main {
      * @param args
      *            the arguments
      * @throws IOException 
+     * @throws InterruptedException 
      */
-    public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException, InterruptedException {
     	
     	final IModel model = new Model("level1");
     	final IView view = new ViewFacade(model.getMap(), model.getPlayer());
         final ControllerFacade controller = new ControllerFacade(view, model);
 
-        try {
-            controller.start();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
+        controller.play();
     }
 
 }
