@@ -41,6 +41,8 @@ public class Element implements IElement {
 	public Image getImage() {
 		if(index > 3)
 			index = 0;
+		
+		System.out.println(index);
 		return this.getImage(index++);
 		
 	}

@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -10,17 +8,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import fr.exia.showboard.BoardFrame;
-import fr.exia.showboard.ISquare;
 import model.IMap;
 import model.IMobile;
 import model.UserOrder;
-import model.element.motionless.MotionlessFactory;
 import view.IOrderPerformer;
 import view.IView;
 
@@ -32,13 +26,13 @@ import view.IView;
  */
 public class ViewFacade implements IView, Runnable, KeyListener {
 
-	private static final int squareSize = 50;
+	private static final int squareSize = 200;
 
 	private static final int borderOffset = 6;
 
-	private static final int widthView = 10;
+	private static final int widthView = 1;
 
-	private static final int heightView = 10;
+	private static final int heightView = 1;
 
 	private Rectangle closeView;
 
@@ -47,7 +41,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	private IMobile character;
 
 	private int xView;
-
+  
 	private int yView;
 
 	private IOrderPerformer orderPerformer;
@@ -60,8 +54,8 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	public ViewFacade(final IMap map, final IMobile character) throws IOException {
 		this.setMap(map);
 		this.setMyCharacter(character);
-		this.setXView(ViewFacade.borderOffset);
-		this.setYView(ViewFacade.borderOffset);
+		this.setXView(0);
+		this.setYView(0);
 
 		//changer méthode pour le personnage
 		//this.getMyCharacter().getSprite().loadImage();
@@ -96,26 +90,18 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         boardFrame.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
-        		System.out.println("----------");
-        		boardFrame.invalidate();
         		boardFrame.repaint();
         	}
 		});
         
         
-        
-        
         for (int y = 0; y < this.getMap().getHeight(); y++) {
             for (int x = 0; x < this.getMap().getWidth(); x++) {
                 boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
-                System.out.println(x + " " + y);
+                System.out.println("lol");
             }
-        }
+        } 
         
-        System.out.println(boardFrame.getWidth() + " " + boardFrame.getHeight()); 
-        
-        //debug
-        System.out.println(this.getMap().getMapXY(0, 0).getImage(0));
         this.show();
         
         //boardFrame.addPawn(this.getMyCharacter());
