@@ -9,6 +9,7 @@ public class Element implements IElement {
 
 	private Sprite sprite;
 	private model.Permeability permeability;
+	private int index = 0;
 	
 	public Element(Sprite sprite, model.Permeability permeability) {
 		this.setSprite(sprite);
@@ -31,7 +32,14 @@ public class Element implements IElement {
 		this.permeability = permeability;
 	}
 	
-	public Image getImage(int index) {
-		return this.getSprite().getImage(index);
+	@Override
+	public Image getImage() {
+		if(index > 3)
+			index = 0;
+	
+		System.out.println(index);
+		return this.getImage(index++);
+		
 	}
+
 }
