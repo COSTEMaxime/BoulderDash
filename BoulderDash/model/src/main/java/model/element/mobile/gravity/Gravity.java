@@ -5,15 +5,10 @@ import model.Permeability;
 import model.Sprite;
 import model.element.mobile.Mobile;
 
-abstract class Gravity extends Mobile {
+public interface Gravity {
 
-	public Gravity(Sprite sprite, IMap map, Permeability permeability) {
-		super(sprite, map, permeability);
-	}
-	
-	protected boolean falling;
-	
-	public boolean isFalling() {
-		return this.falling;
-	}
+	boolean falling = false;
+		
+	public boolean isFalling();
+	public void setFalling(boolean falling);
 }

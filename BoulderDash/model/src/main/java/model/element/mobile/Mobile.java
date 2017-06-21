@@ -7,6 +7,7 @@ import model.IMap;
 import model.IMobile;
 import model.Sprite;
 import model.element.Element;
+import model.element.mobile.gravity.Gravity;
 
 public abstract class Mobile extends Element implements IMobile {
 
@@ -14,6 +15,11 @@ public abstract class Mobile extends Element implements IMobile {
 	private Point position;
 	private IMap map;
 	private IBoard board;
+	
+	// NEW
+	public Mobile(Sprite sprite, model.Permeability permeability) {
+		super(sprite, permeability);
+	}
 	
 	public Mobile(Sprite sprite, IMap map, model.Permeability permeability) {
 		super(sprite, permeability);

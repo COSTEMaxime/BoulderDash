@@ -4,17 +4,18 @@ import java.awt.Image;
 
 import model.IMap;
 import model.Sprite;
+import model.SpritesPositions;
 
 // Add sprite instances
 
 public class Player extends Mobile {
 
-	private static Sprite spriteDef;// = new Sprite('@', );
-	private static Sprite spriteUp;
-	private static Sprite spriteDown;
-	private static Sprite spriteLeft;
-	private static Sprite spriteRight;
-	private static Sprite spriteDie;
+	private static Sprite spriteDef = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
+	private static Sprite spriteUp = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
+	private static Sprite spriteDown = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
+	private static Sprite spriteLeft = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
+	private static Sprite spriteRight = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
+	private static Sprite spriteDie = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
 	
 	private int score = 0;
 	private int diamondCount = 0;
@@ -25,6 +26,10 @@ public class Player extends Mobile {
 		this.lives = 4;
 		this.score = 0;
 		this.diamondCount = 0;
+	}
+	
+	public Player() {
+		super(sprite, model.Permeability.PENETRABLE);
 	}
 	
 	public void moveUp() {
