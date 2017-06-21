@@ -1,7 +1,5 @@
 package model.element.mobile.gravity;
 
-import model.IMap;
-import model.Permeability;
 import model.Sprite;
 import model.SpritesPositions;
 import model.element.mobile.Mobile;

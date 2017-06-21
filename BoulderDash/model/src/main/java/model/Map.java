@@ -2,13 +2,8 @@ package model;
 
 import java.util.Observable;
 
-import javax.naming.directory.ModificationItem;
-
 import model.element.mobile.Player;
-import model.element.mobile.gravity.Diamond;
 import model.element.mobile.gravity.Gravity;
-import model.element.mobile.gravity.Rock;
-import model.element.motionless.Air;
 import model.element.motionless.MotionlessFactory;
 
 public class Map extends Observable implements IMap {
@@ -47,28 +42,27 @@ public class Map extends Observable implements IMap {
 	@Override
 	public void update() {
 
-		
 		// améliorable en prenant en compte les bordures
 		for (int y = this.getHeight() - 2; y >= 0; y--) {
 			for (int x = 0; x < this.getWidth(); x++) {
-				
+
 				// si l'objet est un objet soumit à la gravité
 				if (this.getMapXY(x, y).equals(MotionlessFactory.createDiamond())
 						|| this.getMapXY(x, y).equals(MotionlessFactory.createRock())) {
-					
+
 					// si il y a de l'air juste en dessous alors l'objet tombe
 					if (this.getMapXY(x, y + 1).equals(MotionlessFactory.createAir())) {
-						
+
 						((Gravity) this.getMapXY(x, y)).setFalling(true);
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
 						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
 						continue;
-						
+
 						// si il y a le joueur en dessous et que l'objet est
 						// déjà en train de tomber
-					} else if (this.getMapXY(x, y + 1).getClass().isInstance(Player.class)
+					} else if (this.getMapXY(x, y + 1).equals(MotionlessFactory.createPlayer())
 							&& ((Gravity) this.getMapXY(x, y)).isFalling()) {
-						
+
 						((Player) this.getMapXY(x, y + 1)).die();
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
 						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
@@ -79,25 +73,35 @@ public class Map extends Observable implements IMap {
 						// si il peut aller sur la gauche
 						if (this.getMapXY(x - 1, y).equals(MotionlessFactory.createAir())
 								&& this.getMapXY(x - 1, y + 1).equals(MotionlessFactory.createAir())) {
-							
-							((Gravity) this.getMapXY(x, y)).setFalling(true);;
+
+							((Gravity) this.getMapXY(x, y)).setFalling(true);
+							;
 							this.setOnMapXY(this.getMapXY(x, y), x - 1, y);
 							this.setOnMapXY(MotionlessFactory.createAir(), x, y);
 							continue;
-							
+
 							// si il peut aller sur la droite
 						} else if (this.getMapXY(x + 1, y).equals(MotionlessFactory.createAir())
 								&& this.getMapXY(x + 1, y + 1).getClass().equals(MotionlessFactory.createAir())) {
-							
+
 							((Gravity) this.getMapXY(x, y)).setFalling(true);
 							this.setOnMapXY(this.getMapXY(x, y), x + 1, y);
 							this.setOnMapXY(MotionlessFactory.createAir(), x, y);
 							continue;
 						}
 					}
-					//si on arrive ici c'est que l'objet n'a pas bougé
+					// si on arrive ici c'est que l'objet n'a pas bougé
 					((Gravity) this.getMapXY(x, y)).setFalling(false);
 				}
+
+				// si l'objet est un monstre
+				if (this.getMapXY(x, y).equals(MotionlessFactory.createMonsterDiamond())
+						|| this.getMapXY(x, y).equals(MotionlessFactory.createMonsterScore())) {
+					
+					//check sa direction + position joueur
+
+				}
+
 			}
 		}
 		this.setMobileHasChanged();

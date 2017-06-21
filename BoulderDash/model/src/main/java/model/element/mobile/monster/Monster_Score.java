@@ -1,7 +1,6 @@
 package model.element.mobile.monster;
 
 import model.IMonster;
-import model.Permeability;
 import model.Sprite;
 import model.SpritesPositions;
 import model.element.mobile.Mobile;

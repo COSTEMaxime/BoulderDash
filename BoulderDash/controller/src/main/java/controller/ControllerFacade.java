@@ -1,10 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.swing.DefaultBoundedRangeModel;
-
 import model.IModel;
 import model.UserOrder;
 import view.IOrderPerformer;

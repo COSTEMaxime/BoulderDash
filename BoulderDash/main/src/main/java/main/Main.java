@@ -1,8 +1,6 @@
 package main;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import controller.ControllerFacade;
 import model.IModel;
 import model.Model;

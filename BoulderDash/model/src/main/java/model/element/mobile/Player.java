@@ -4,7 +4,6 @@ import java.awt.Image;
 
 import model.IMap;
 import model.Sprite;
-import model.SpritesPositions;
 
 // Add sprite instances
 

@@ -6,7 +6,6 @@ import model.element.mobile.Player;
 import model.element.mobile.gravity.Diamond;
 import model.element.mobile.gravity.Gravity;
 import model.element.mobile.gravity.Rock;
-import model.element.mobile.monster.Monster;
 import model.element.mobile.monster.Monster_Diamond;
 import model.element.mobile.monster.Monster_Score;
 

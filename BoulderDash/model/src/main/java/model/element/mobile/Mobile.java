@@ -7,7 +7,6 @@ import model.IMap;
 import model.IMobile;
 import model.Sprite;
 import model.element.Element;
-import model.element.mobile.gravity.Gravity;
 
 public abstract class Mobile extends Element implements IMobile {
 
