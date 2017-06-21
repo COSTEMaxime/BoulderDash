@@ -34,10 +34,10 @@ public class Element implements IElement {
 	
 	@Override
 	public Image getImage() {
-		if(index > 3)
+		
+		if(index > this.getSprite().getSize() -1 )
 			index = 0;
 	
-		System.out.println(index);
 		return this.sprite.getImage(index++);
 		
 	}

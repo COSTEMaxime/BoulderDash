@@ -25,5 +25,6 @@ public class Diamond extends Mobile implements Gravity {
 	public void setFalling(boolean falling) {
 		this.falling = falling;
 	}
+
 	
 }

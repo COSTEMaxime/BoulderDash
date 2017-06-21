@@ -30,9 +30,9 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	private static final int borderOffset = 6;
 
-	private static final int widthView = 10;
+	private static final int widthView = 14;
 
-	private static final int heightView = 10;
+	private static final int heightView = 14;
 
 	private Rectangle closeView;
 
@@ -91,6 +91,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		boardFrame.repaint();
+        		show();
         	}
 		});
         

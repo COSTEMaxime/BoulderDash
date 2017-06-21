@@ -47,7 +47,6 @@ public class ControllerFacade implements IController, IOrderPerformer {
 	public void play() throws InterruptedException {
 
 		while (this.getModel().getPlayer().isAlive()) {
-			System.out.println(this.getModel().getPlayer().getX() + " " + this.getModel().getPlayer().getY());
 			Thread.sleep(speed);
 			switch (this.getStackOrder()) {
 
@@ -100,7 +99,6 @@ public class ControllerFacade implements IController, IOrderPerformer {
 
 	@Override
 	public void orderPerform(UserOrder userOrder) throws IOException {
-		System.out.println(userOrder);
 		this.setStackOrder(userOrder);
 	}
 

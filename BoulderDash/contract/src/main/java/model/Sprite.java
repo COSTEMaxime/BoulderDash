@@ -110,4 +110,8 @@ public class Sprite {
 	public final void setImageLoaded(final boolean isImageLoaded) {
 		this.imageLoaded = isImageLoaded;
 	}
+
+	public int getSize() {
+		return this.image.length;
+	}
 }
