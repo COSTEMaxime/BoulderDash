@@ -78,7 +78,7 @@ public class MotionlessFactory {
 	public static IElement getFromFileSymbol(final char fileSymbol) {
 		
 		// Case of Monsters (or player)
-		if(fileSymbol == '1' || fileSymbol == '2') {
+		if(fileSymbol == '1' || fileSymbol == '2' || fileSymbol == '+') {
 			for(Mobile mobile : MobileElements) {
 				if(mobile.getSprite().getConsoleImage() == fileSymbol) {
 					return mobile;
@@ -87,7 +87,11 @@ public class MotionlessFactory {
 		
 		// Case of Gravity affected items (Rocks / Diamonds)
 		} else if(fileSymbol == 'X' || fileSymbol == 'O') {
-			
+			for(Gravity gravity : GravityElements) {
+				if(((IElement) gravity).getSprite().getConsoleImage() == fileSymbol) {
+					return (IElement) gravity;
+				}
+			}
 		// Case of Motionless Items (Earth / Walls / ...)
 		} else {
 			for(Motionless motionless : MotionlessElements) {
