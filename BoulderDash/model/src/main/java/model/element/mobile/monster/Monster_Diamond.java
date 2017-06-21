@@ -1,5 +1,11 @@
 package model.element.mobile.monster;
 
-public class Monster_Diamond {
+import model.IMonster;
 
+public class Monster_Diamond implements IMonster {
+
+	@Override
+	public int loot() {
+		return 1;
+	}
 }

@@ -1,10 +1,19 @@
 package model.element.mobile.gravity;
 
-public class Gravity {
+import model.IMap;
+import model.Permeability;
+import model.Sprite;
+import model.element.mobile.Mobile;
 
+abstract class Gravity extends Mobile {
+
+	public Gravity(Sprite sprite, IMap map, Permeability permeability) {
+		super(sprite, map, permeability);
+	}
+	
 	protected boolean falling;
 	
 	public boolean isFalling() {
-		return false;
+		return this.falling;
 	}
 }

@@ -33,17 +33,13 @@ public class Element implements IElement {
 	}
 	
 	@Override
-	public Image getImage(int index) {
-		return this.getSprite().getImage(index);
-	}
-
-	@Override
 	public Image getImage() {
 		if(index > 3)
 			index = 0;
-		
+	
 		System.out.println(index);
-		return this.getImage(index++);
+		return this.sprite.getImage(index++);
 		
 	}
+
 }
