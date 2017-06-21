@@ -28,8 +28,9 @@ public class Player extends Mobile {
 		this.diamondCount = 0;
 	}
 	
+	// Change null to something else ...
 	public Player() {
-		super(sprite, model.Permeability.PENETRABLE);
+		super(null, model.Permeability.PENETRABLE);
 	}
 	
 	public void moveUp() {
