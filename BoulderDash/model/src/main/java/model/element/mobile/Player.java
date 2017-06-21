@@ -16,7 +16,8 @@ public class Player extends Mobile {
 	private static Sprite spriteRight;
 	private static Sprite spriteDie;
 	
-	private int score;
+	private int score = 0;
+	private int diamondCount = 0;
 	
 	public Player(int x, int y, IMap map) {
 		super(x, y, spriteDef, map, model.Permeability.BLOCKING);
@@ -50,6 +51,26 @@ public class Player extends Mobile {
 	public void die() {
 		super.die();
 		this.setSprite(spriteDie);
+	}
+		
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public void addScore(int score) {
+		this.score += score;
+	}
+
+	public int getDiamondCount() {
+		return diamondCount;
+	}
+
+	public void setDiamondCount(int diamondCount) {
+		this.diamondCount = diamondCount;
 	}
 
 	@Override
