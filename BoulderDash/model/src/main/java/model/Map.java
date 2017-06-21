@@ -83,7 +83,7 @@ public class Map extends Observable implements IMap {
 		return this;
 	}
 
-	private void setOnTheRoadXY(final IElement element, final int x, final int y) {
+	private void setOnMapXY(final IElement element, final int x, final int y) {
 		this.onTheMap[x][y] = element;
 	}
 

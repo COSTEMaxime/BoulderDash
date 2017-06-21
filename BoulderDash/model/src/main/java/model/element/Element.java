@@ -31,7 +31,7 @@ public class Element implements IElement {
 		this.permeability = permeability;
 	}
 	
-	public Image getImage() {
-		return null;
+	public Image getImage(int index) {
+		return this.getSprite().getImage(index);
 	}
 }

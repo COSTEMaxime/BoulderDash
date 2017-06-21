@@ -27,20 +27,25 @@ public abstract class Mobile extends Element implements IMobile {
 		this.position = new Point(x,y);
 	}
 	
+	
+	// TO CHECK
 	public void moveUp() {
-		
+		this.position.y = getY() + 1;
 	}
 	
+	// TO CHECK
 	public void moveDown() {
-		
+		this.position.y = getY() - 1;
 	}
 
+	// TO CHECK
 	public void moveLeft() {
-	
+		this.position.x = getX() + 1;
 	}
 
+	// TO CHECK
 	public void moveRight() {
-	
+		this.position.x = getX() - 1;
 	}
 	
 	public void doNothing() {
@@ -51,20 +56,30 @@ public abstract class Mobile extends Element implements IMobile {
 		
 	}
 	
+	// Add in UML
+	public void setAlive(boolean b) {
+		this.alive = b;
+	}
+	
+	// Add in UML
+	public void die() {
+		this.alive = false;
+	}
+	
 	public int getX() {
-		return 0;
+		return position.x;
 	}
 	
 	public int getY() {
-		return 0;
+		return position.y;
 	}
 
 	public void setX(int x) {
-		
+		this.position.x = x;
 	}
 	
 	public void setY(int y) {
-		
+		this.position.y = y;
 	}
 
 	public Point getPosition() {

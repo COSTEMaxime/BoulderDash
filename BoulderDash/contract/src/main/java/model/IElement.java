@@ -8,5 +8,5 @@ public interface IElement {
 	
 	model.Permeability getPermeability();
 	
-	Image getImage();
+	Image getImage(int index);
 }

@@ -1,5 +1,8 @@
 package model;
 
-public interface IMonster {
 
+// Strategy
+
+public interface IMonster {
+	
 }
