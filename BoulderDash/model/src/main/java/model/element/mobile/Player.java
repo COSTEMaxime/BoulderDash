@@ -10,12 +10,12 @@ import model.SpritesPositions;
 
 public class Player extends Mobile {
 
-	private static Sprite spriteDef = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
-	private static Sprite spriteUp = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
-	private static Sprite spriteDown = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
-	private static Sprite spriteLeft = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
-	private static Sprite spriteRight = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
-	private static Sprite spriteDie = new Sprite('#', SpritesPositions.PLAYER.ordinal(), 1);
+	private static Sprite spriteDef = new Sprite(model.UserOrder.NOP);
+	private static Sprite spriteUp = new Sprite(model.UserOrder.UP);
+	private static Sprite spriteDown = new Sprite(model.UserOrder.DOWN);
+	private static Sprite spriteLeft = new Sprite(model.UserOrder.LEFT);
+	private static Sprite spriteRight = new Sprite(model.UserOrder.RIGHT);
+	private static Sprite spriteDie = new Sprite(model.UserOrder.NOP);
 	
 	private int score = 0;
 	private int diamondCount = 0;
