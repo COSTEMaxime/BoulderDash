@@ -7,6 +7,7 @@ import java.util.Observable;
 import model.element.mobile.Mobile;
 import model.element.mobile.Player;
 import model.element.mobile.gravity.Diamond;
+import model.element.mobile.gravity.Gravity;
 import model.element.mobile.gravity.Rock;
 import model.element.motionless.Air;
 import model.element.motionless.MotionlessFactory;
@@ -40,12 +41,26 @@ public class Map extends Observable implements IMap {
 
 		for (int y = this.getHeight() - 2; y >= 0; y--) {
 			for (int x = 0; x < this.getWidth(); x++) {
+				//si l'objet est un diamant ou un rocher
 				if(this.getMapXY(x, y).getClass().isInstance(Diamond.class) || this.getMapXY(x, y).getClass().isInstance(Rock.class))
+					//si il y a de l'air juste en dessous alors il tombe
 					if(this.getMapXY(x, y+1).getClass().isInstance(Air.class))	{
-						((Mobile) this.getMapXY(x, y)).setFalling(true);
+						((Gravity) this.getMapXY(x, y)).setFalling(true);
 						this.setOnMapXY(this.getMapXY(x, y), x, y+1);
 						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
-					} else if (this.getMapXY(x, y+1).getClass().isInstance(Player.class))
+					//si il y a le joueur en dessous et que l'objet est déjà en train de tomber
+					} else if (this.getMapXY(x, y+1).getClass().isInstance(Player.class) && ((Gravity) this.getMapXY(x, y)).isFalling())	{
+						((Player) this.getMapXY(x, y+1)).die();
+						this.setOnMapXY(this.getMapXY(x, y), x, y+1);
+						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+					} else if (this.getMapXY(x, y+1).getClass().isInstance(Rock.class))	{
+						//si il peut aller sur la gauche
+						
+						//si il peut aller sur la droite
+						
+					} else	{
+						((Gravity) this.getMapXY(x, y)).setFalling(false);
+					}
 			}
 		}
 	}
