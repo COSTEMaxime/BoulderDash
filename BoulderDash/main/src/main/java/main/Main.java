@@ -30,7 +30,7 @@ public abstract class Main {
     	final IModel model = new Model("level1");
     	final IView view = new ViewFacade(model.getMap(), model.getPlayer());
         final ControllerFacade controller = new ControllerFacade(view, model);
-
+        view.setOrderPerformer(controller.getOrderPerformer());
         controller.play();
     }
 

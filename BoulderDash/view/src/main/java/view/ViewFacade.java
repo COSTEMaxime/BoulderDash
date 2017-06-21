@@ -155,6 +155,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	public void keyPressed(KeyEvent keyEvent) {
 		try {
 			System.out.println(keyEvent.getKeyCode());
+			System.out.println(keyCodeToUserOrder(keyEvent.getKeyCode())); 
             this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
         } catch (final IOException exception) {
             exception.printStackTrace();
@@ -209,5 +210,9 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	
 	private IOrderPerformer getOrderPerformer() {
 		return this.orderPerformer;
+	}
+	
+	public void setOrderPerformer(IOrderPerformer orderPerformer)	{
+		this.orderPerformer = orderPerformer;
 	}
 }

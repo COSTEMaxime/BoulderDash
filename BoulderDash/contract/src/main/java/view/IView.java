@@ -17,4 +17,6 @@ public interface IView {
     void displayMessage(String message);
     
     void followMyCharacter();
+
+	void setOrderPerformer(IOrderPerformer orderPerformer);
 }

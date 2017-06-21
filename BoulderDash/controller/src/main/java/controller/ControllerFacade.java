@@ -67,9 +67,8 @@ public class ControllerFacade implements IController, IOrderPerformer {
 			default:
 				break;
 			}
-
+			this.clearStackOrder();
 		}
-
 	}
 
 	/**
@@ -99,7 +98,7 @@ public class ControllerFacade implements IController, IOrderPerformer {
 	}
 
 	@Override
-	public void orderPerform(final UserOrder userOrder) throws IOException {
+	public void orderPerform(UserOrder userOrder) throws IOException {
 		System.out.println(userOrder);
 		this.setStackOrder(userOrder);
 	}
