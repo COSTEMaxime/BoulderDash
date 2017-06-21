@@ -16,4 +16,8 @@ abstract class Gravity extends Mobile {
 	public boolean isFalling() {
 		return this.falling;
 	}
+	
+	public void setFalling(final boolean falling)	{
+		this.falling = falling;
+	}
 }

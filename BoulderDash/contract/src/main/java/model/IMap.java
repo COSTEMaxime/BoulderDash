@@ -14,4 +14,6 @@ public interface IMap {
 
     void setMobileHasChanged();
 
+	void update();
+
 }

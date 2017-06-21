@@ -68,6 +68,7 @@ public class ControllerFacade implements IController, IOrderPerformer {
 				break;
 			}
 			this.clearStackOrder();
+			this.getModel().getMap().update();
 		}
 	}
 
