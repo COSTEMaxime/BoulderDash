@@ -1,5 +1,7 @@
 package model.element.motionless;
 
+import model.IElement;
+
 public class MotionlessFactory {
 
 	private static final Earth EARTH = new Earth();
@@ -48,7 +50,7 @@ public class MotionlessFactory {
 		return EXPLOSION;
 	}
 	
-	public static Motionless getFileFromSymbol(final char fileSymbol) {
+	public static IElement getFromFileSymbol(final char fileSymbol) {
 		
 		for(Motionless motionless : MotionlessElements) {
 			if(motionless.getSprite().getConsoleImage() == fileSymbol) {

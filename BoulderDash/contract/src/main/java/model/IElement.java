@@ -10,5 +10,5 @@ public interface IElement extends ISquare{
 	
 	model.Permeability getPermeability();
 	
-	Image getImage(int index);
+	Image getImage();
 }

@@ -18,9 +18,13 @@ public class Player extends Mobile {
 	
 	private int score = 0;
 	private int diamondCount = 0;
+	private int lives = 4;
 	
 	public Player(int x, int y, IMap map) {
 		super(x, y, spriteDef, map, model.Permeability.BLOCKING);
+		this.lives = 4;
+		this.score = 0;
+		this.diamondCount = 0;
 	}
 	
 	public void moveUp() {
@@ -52,7 +56,7 @@ public class Player extends Mobile {
 		super.die();
 		this.setSprite(spriteDie);
 	}
-		
+
 	public int getScore() {
 		return score;
 	}
@@ -72,7 +76,23 @@ public class Player extends Mobile {
 	public void setDiamondCount(int diamondCount) {
 		this.diamondCount = diamondCount;
 	}
+	
+	public void addDiamond(int diamond) {
+		this.diamondCount += diamond;
+	}
 
+	public int getLives() {
+		return lives;
+	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
+	}
+	
+	public void addLives(int lives) {
+		this.lives = lives;
+	}
+	
 	@Override
 	public Image getImage() {
 		// TODO Auto-generated method stub

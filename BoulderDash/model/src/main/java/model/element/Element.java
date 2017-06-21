@@ -38,7 +38,7 @@ public class Element implements IElement {
 			index = 0;
 	
 		System.out.println(index);
-		return this.getImage(index++);
+		return this.sprite.getImage(index++);
 		
 	}
 
