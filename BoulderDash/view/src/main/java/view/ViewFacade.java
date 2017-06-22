@@ -203,19 +203,19 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 		return this.map;
 	}
 
-	private void setYView(final int yView) {
+	public void setYView(final int yView) {
 		this.yView = yView;
 	}
 
-	private void setXView(final int xView) {
+	public void setXView(final int xView) {
 		this.xView = xView;
 	}
 
-	private int getXView() {
+	public int getXView() {
 		return this.xView;
 	}
 
-	private int getYView() {
+	public int getYView() {
 		return this.yView;
 	}
 	

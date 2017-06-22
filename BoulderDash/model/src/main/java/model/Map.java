@@ -53,6 +53,7 @@ public class Map extends Observable implements IMap {
 		for (int y = this.getHeight() - 2; y >= 0; y--) {
 			for (int x = 0; x < this.getWidth(); x++) {
 
+				System.out.println(this.getMapXY(x, y));
 				// si l'objet est un objet soumit à la gravité
 				if (this.getMapXY(x, y).getClass() == Diamond.class || this.getMapXY(x, y).getClass() == Rock.class) {
 
