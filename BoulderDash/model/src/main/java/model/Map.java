@@ -14,16 +14,42 @@ import model.element.mobile.monster.Monster_Diamond;
 import model.element.mobile.monster.Monster_Score;
 import model.element.motionless.Air;
 
+/**
+ * The class that represents the map
+ * 
+ * 
+ * @author Coste Maxime
+ *
+ */
+
 public class Map extends Observable implements IMap {
 
+	/* The width of the map */
 	private int width;
+
+	/* The height of the map */
 	private int height;
+
+	/* Double dimension array to store the Elements */
 	private IElement[][] onTheMap;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param mapName
+	 *            the name of the map to be load
+	 */
 
 	public Map(final String mapName) {
 		loadMap(mapName);
 	}
 
+	/**
+	 * Load the map
+	 * 
+	 * @param nomMap
+	 *            the name of the map to be load
+	 */
 	private void loadMap(final String nomMap) {
 
 		ICAD cad = new JDBC();
@@ -38,11 +64,17 @@ public class Map extends Observable implements IMap {
 
 		for (int y = 0; y < this.getHeight(); y++) {
 			for (int x = 0; x < this.getWidth(); x++) {
-				this.setOnMapXY(ElementFactory
-						.getFromFileSymbol(((String) result.get(2)).charAt(x + (y * (this.getWidth())))), x, y);
+				this.setOnMapXY(
+						ElementFactory.getFromFileSymbol(((String) result.get(2)).charAt(x + (y * (this.getWidth())))),
+						x, y);
 			}
 		}
 	}
+
+	/**
+	 * The update function Called at each game tick, apply physics on the map
+	 * 
+	 */
 
 	@Override
 	public void update() {
@@ -58,10 +90,10 @@ public class Map extends Observable implements IMap {
 					if (this.getMapXY(x, y + 1).getClass() == Air.class) {
 						((Gravity) this.getMapXY(x, y)).setFalling(true);
 						((Mobile) this.getMapXY(x, y)).moveDown();
-						//System.out.println(this.getMapXY(x, y));
+						// System.out.println(this.getMapXY(x, y));
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
-						
-						System.out.println(this.getMapXY(x, y+1));
+
+						System.out.println(this.getMapXY(x, y + 1));
 						this.setOnMapXY(ElementFactory.createAir(), x, y);
 						System.out.println(this.getMapXY(x, y));
 						continue;
@@ -115,23 +147,59 @@ public class Map extends Observable implements IMap {
 		this.setMobileHasChanged();
 	}
 
+	/**
+	 * Set the width of the map
+	 * 
+	 * @param width
+	 *            the width
+	 */
 	private void setWidth(final int width) {
 		this.width = width;
 	}
 
+	/**
+	 * Set the height of the map
+	 * 
+	 * @param height
+	 *            the height
+	 */
+
 	private void setHeight(final int height) {
 		this.height = height;
 	}
+
+	/**
+	 * Return the width of the map
+	 * 
+	 * @return the width
+	 */
 
 	@Override
 	public int getWidth() {
 		return this.width;
 	}
 
+	/**
+	 * Return the height of the map
+	 * 
+	 * @return the height
+	 */
+
 	@Override
 	public int getHeight() {
 		return this.height;
 	}
+
+	/**
+	 * Return an Element at a specific coordinate on the map
+	 * 
+	 * @param x
+	 *            the x position
+	 * @param y
+	 *            the y position
+	 * 
+	 * @return the Element
+	 */
 
 	@Override
 	public IElement getMapXY(int x, int y) {
