@@ -6,13 +6,13 @@ import java.util.LinkedList;
 import java.util.Observable;
 
 import model.cad.JDBC;
+import model.element.ElementFactory;
 import model.element.mobile.Player;
 import model.element.mobile.gravity.Diamond;
 import model.element.mobile.gravity.Gravity;
 import model.element.mobile.gravity.Rock;
 import model.element.mobile.monster.Monster_Diamond;
 import model.element.mobile.monster.Monster_Score;
-import model.element.motionless.MotionlessFactory;
 
 public class Map extends Observable implements IMap {
 
@@ -45,9 +45,9 @@ public class Map extends Observable implements IMap {
 			for (int x = 0; x < this.getWidth(); x++) {
 				if (y < borderSize || y >= this.getHeight() - borderSize || x < borderSize
 						|| x >= this.getWidth() - borderSize) {
-					this.setOnMapXY(MotionlessFactory.createEarth(), x, y);
+					this.setOnMapXY(ElementFactory.createEarth(), x, y);
 				} else {
-					this.setOnMapXY(MotionlessFactory
+					this.setOnMapXY(ElementFactory
 							.getFromFileSymbol(((String) result.get(3)).charAt(x + (y * this.getWidth()))), x, y);
 				}
 			}
@@ -78,10 +78,10 @@ public class Map extends Observable implements IMap {
 				if (this.getMapXY(x, y).getClass() == Diamond.class || this.getMapXY(x, y).getClass() == Rock.class) {
 
 					// si il y a de l'air juste en dessous alors l'objet tombe
-					if (this.getMapXY(x, y + 1).equals(MotionlessFactory.createAir())) {
+					if (this.getMapXY(x, y + 1).equals(ElementFactory.createAir())) {
 						((Gravity) this.getMapXY(x, y)).setFalling(true);
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
-						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+						this.setOnMapXY(ElementFactory.createAir(), x, y);
 						continue;
 
 						// si il y a le joueur en dessous et que l'objet est
@@ -91,28 +91,28 @@ public class Map extends Observable implements IMap {
 
 						((Player) this.getMapXY(x, y + 1)).die();
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
-						this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+						this.setOnMapXY(ElementFactory.createAir(), x, y);
 						continue;
 						// si il y a un rocher en dessous
 					} else if (this.getMapXY(x, y + 1).getClass() == Rock.class
 							|| this.getMapXY(x, y + 1).getClass() == Diamond.class) {
 
 						// si il peut aller sur la gauche
-						if (this.getMapXY(x - 1, y).equals(MotionlessFactory.createAir())
-								&& this.getMapXY(x - 1, y + 1).equals(MotionlessFactory.createAir())) {
+						if (this.getMapXY(x - 1, y).equals(ElementFactory.createAir())
+								&& this.getMapXY(x - 1, y + 1).equals(ElementFactory.createAir())) {
 
 							((Gravity) this.getMapXY(x, y)).setFalling(true);
 							this.setOnMapXY(this.getMapXY(x, y), x - 1, y);
-							this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+							this.setOnMapXY(ElementFactory.createAir(), x, y);
 							continue;
 
 							// si il peut aller sur la droite
-						} else if (this.getMapXY(x + 1, y).equals(MotionlessFactory.createAir())
-								&& this.getMapXY(x + 1, y + 1).equals(MotionlessFactory.createAir())) {
+						} else if (this.getMapXY(x + 1, y).equals(ElementFactory.createAir())
+								&& this.getMapXY(x + 1, y + 1).equals(ElementFactory.createAir())) {
 
 							((Gravity) this.getMapXY(x, y)).setFalling(true);
 							this.setOnMapXY(this.getMapXY(x, y), x + 1, y);
-							this.setOnMapXY(MotionlessFactory.createAir(), x, y);
+							this.setOnMapXY(ElementFactory.createAir(), x, y);
 							continue;
 						}
 					}
