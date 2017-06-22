@@ -2,6 +2,7 @@ package main;
 
 import java.io.IOException;
 import controller.ControllerFacade;
+import model.IElement;
 import model.IModel;
 import model.Model;
 import view.IView;
@@ -32,3 +33,5 @@ public abstract class Main {
         controller.play();
     }
 }
+	
+	

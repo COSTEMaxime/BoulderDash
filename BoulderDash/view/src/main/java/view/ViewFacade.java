@@ -90,6 +90,14 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         boardFrame.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
+        		
+        		/*	à changer	*/
+        		
+        		for (int y = 0; y < getMap().getHeight(); y++) {
+                    for (int x = 0; x < getMap().getWidth(); x++) {
+                        boardFrame.addSquare(getMap().getMapXY(x, y), x, y);
+                    }
+                }
         		boardFrame.repaint();
         		show();
         	}
@@ -102,7 +110,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
             }
         } 
         
-        this.show();
+        //this.show();
         
         //boardFrame.addPawn(this.getMyCharacter());
         this.getMap().getObservable().addObserver(boardFrame.getObserver());
@@ -124,6 +132,8 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         }
 
 	public final void followMyCharacter() {
+		
+		/*	à revoir	*/
 		if (getMyCharacter().getX() < ViewFacade.borderOffset)
 			this.setXView(this.getXView() + 1);
 
