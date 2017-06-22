@@ -33,7 +33,23 @@ public class Element_Test {
 		Element element = new Element(null, null);
 		final int expected = 5;
 
+		element.setX(expected);
+		
 		assertEquals("", expected, element.getX());
 	}
+	
+	@Test
+	public void getY_test() {
+		Element element = new Element(null, null);
+		final int expected = 3;
 
+		element.setY(expected);
+		
+		assertEquals("", expected, element.getY());
+	}
+	
+	@Test
+	public void test() {
+		
+	}
 }
