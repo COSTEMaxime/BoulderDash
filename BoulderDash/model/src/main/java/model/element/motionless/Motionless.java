@@ -12,9 +12,12 @@ public class Motionless extends Mobile {
 		super(sprite, permeability);
 	}
 
+	/**
+	 * Not Used
+	 * 
+	 */
 	@Override
 	public Point getPosition() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

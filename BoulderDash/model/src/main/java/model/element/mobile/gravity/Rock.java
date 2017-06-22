@@ -6,17 +6,21 @@ import model.Sprite;
 import model.SpritesPositions;
 import model.element.mobile.Mobile;
 
-
 public class Rock extends Mobile implements Gravity {
 
 	private static final Sprite sprite = new Sprite('O', SpritesPositions.ROCK.ordinal(), 1);
 	private boolean falling;
-	
+
+	/**
+	 * Instantiates a Rock object
+	 * 
+	 */
 	public Rock() {
 		super(sprite, model.Permeability.BLOCKING);
 		this.setFalling(false);
 	}
 
+	
 	@Override
 	public boolean isFalling() {
 		return this.falling;

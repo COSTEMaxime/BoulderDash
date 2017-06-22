@@ -6,8 +6,17 @@ import model.Sprite;
 import model.SpritesPositions;
 import model.element.mobile.Mobile;
 
+
 public class Air extends Mobile {
 
+	/**
+	 * 
+	 * For the sake of time saving, the following classes of the same package will NOT be explained
+	 * 
+	 * 
+	 */
+	
+	
 	private static final Sprite sprite = new Sprite(' ', SpritesPositions.AIR.ordinal(), 1);
 	
 	public Air() {
@@ -16,7 +25,6 @@ public class Air extends Mobile {
 
 	@Override
 	public Point getPosition() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
