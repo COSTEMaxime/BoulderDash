@@ -14,7 +14,7 @@ public class Model implements IModel {
 		this.setMap(new Map(fileName));
 		
 		// Set player start point
-		this.setPlayer(new Player(0, 0, this.getMap()));
+		this.setPlayer(new Player(0, 0));
 	}
 
 	public IMap getMap() {

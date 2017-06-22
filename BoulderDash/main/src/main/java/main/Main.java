@@ -25,7 +25,7 @@ public abstract class Main {
      */
     public static void main(final String[] args) throws IOException, InterruptedException {
     	
-    	final IModel model = new Model("Map1World1");
+    	final IModel model = new Model("Map2World1");
     	final IView view = new ViewFacade(model.getMap(), model.getPlayer());
         final ControllerFacade controller = new ControllerFacade(view, model);
         view.setOrderPerformer(controller.getOrderPerformer());

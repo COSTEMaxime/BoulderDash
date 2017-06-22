@@ -21,8 +21,8 @@ public class Player extends Mobile {
 	private int diamondCount = 0;
 	private int lives = 4;
 
-	public Player(int x, int y, IMap map) {
-		super(x, y, spriteDef, map, model.Permeability.BLOCKING);
+	public Player(int x, int y) {
+		super(x, y, spriteDef, model.Permeability.BLOCKING);
 		this.lives = 4;
 		this.score = 0;
 		this.diamondCount = 0;

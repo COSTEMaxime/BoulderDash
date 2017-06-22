@@ -47,4 +47,7 @@ public interface IMobile extends IPawn, IElement {
      */
     @Override
     Point getPosition();
+
+	void setX(int x);
+	void setY(int y);
 }

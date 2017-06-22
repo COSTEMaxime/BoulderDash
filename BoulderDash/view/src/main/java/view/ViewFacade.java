@@ -13,6 +13,7 @@ import javax.swing.SwingUtilities;
 
 import fr.exia.showboard.BoardFrame;
 import fr.exia.showboard.IPawn;
+import model.IElement;
 import model.IMap;
 import model.IMobile;
 import model.UserOrder;
@@ -107,12 +108,14 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         
         for (int y = 0; y < this.getMap().getHeight(); y++) {
             for (int x = 0; x < this.getMap().getWidth(); x++) {
-                //boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
+                boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
+            	((IMobile) this.getMap().getMapXY(x, y)).setX(x);
+            	((IMobile) this.getMap().getMapXY(x, y)).setY(y);
                 boardFrame.addPawn((IPawn) this.getMap().getMapXY(x, y));
             }
         } 
         
-        //this.show();
+        this.show();
         
         //boardFrame.addPawn(this.getMyCharacter());
         this.getMap().getObservable().addObserver(boardFrame.getObserver());
