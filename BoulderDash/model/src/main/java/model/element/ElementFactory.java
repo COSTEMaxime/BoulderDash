@@ -1,4 +1,4 @@
-package model.element.motionless;
+package model.element;
 
 import model.IElement;
 import model.element.mobile.Mobile;
@@ -8,8 +8,16 @@ import model.element.mobile.gravity.Gravity;
 import model.element.mobile.gravity.Rock;
 import model.element.mobile.monster.Monster_Diamond;
 import model.element.mobile.monster.Monster_Score;
+import model.element.motionless.Air;
+import model.element.motionless.Amoeba;
+import model.element.motionless.Door;
+import model.element.motionless.Earth;
+import model.element.motionless.Explosion;
+import model.element.motionless.Motionless;
+import model.element.motionless.SpecialWall;
+import model.element.motionless.Wall;
 
-public class MotionlessFactory {
+public class ElementFactory {
 
 	private static final Earth EARTH = new Earth();
 	private static final Air AIR = new Air();
@@ -32,47 +40,47 @@ public class MotionlessFactory {
 	private static Mobile[] MobileElements = { MONSTER_SCORE, MONSTER_DIAMOND, PLAYER };
 
 	public static Motionless createEarth() {
-		return EARTH;
+		return new Earth();
 	}
 
 	public static Motionless createAir() {
-		return AIR;
+		return new Air();
 	}
 
 	public static Motionless createWall() {
-		return WALL;
+		return new Wall();
 	}
 
 	public static Motionless createSpecialWall() {
-		return SPECIAL_WALL;
+		return new SpecialWall();
 	}
 
 	public static Motionless createDoor() {
-		return DOOR;
+		return new Door();
 	}
 
 	public static Motionless createAmoeba() {
-		return AMOEBA;
+		return new Amoeba();
 	}
 
 	public static Motionless createExplosion() {
-		return EXPLOSION;
+		return new Explosion();
 	}
 
 	public static Gravity createRock() {
-		return ROCK;
+		return new Rock();
 	}
 
 	public static Gravity createDiamond() {
-		return DIAMOND;
+		return new Diamond();
 	}
 
 	public static Mobile createMonsterScore() {
-		return MONSTER_SCORE;
+		return new Monster_Score();
 	}
 
 	public static Mobile createMonsterDiamond() {
-		return MONSTER_DIAMOND;
+		return new Monster_Diamond();
 	}
 
 	public static Mobile createPlayer() {
