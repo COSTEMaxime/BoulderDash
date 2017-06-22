@@ -1,5 +1,7 @@
 package model.element.mobile.gravity;
 
+import java.awt.Point;
+
 import model.Sprite;
 import model.SpritesPositions;
 import model.element.mobile.Mobile;
@@ -22,6 +24,11 @@ public class Diamond extends Mobile implements Gravity {
 	@Override
 	public void setFalling(boolean falling) {
 		this.falling = falling;
+	}
+
+	@Override
+	public Point getPosition() {
+		return new Point(this.getX(), this.getY());
 	}
 
 	

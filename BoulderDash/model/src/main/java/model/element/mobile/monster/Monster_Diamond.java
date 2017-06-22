@@ -1,5 +1,7 @@
 package model.element.mobile.monster;
 
+import java.awt.Point;
+
 import model.IMonster;
 import model.Sprite;
 import model.SpritesPositions;
@@ -16,5 +18,10 @@ public class Monster_Diamond extends Mobile implements IMonster {
 	@Override
 	public int loot() {
 		return 1;
+	}
+	
+	@Override
+	public Point getPosition() {
+		return new Point(this.getX(), this.getY());
 	}
 }
