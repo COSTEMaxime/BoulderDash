@@ -48,7 +48,7 @@ public class ElementFactory {
 		DIAMOND = new Diamond();
 		MONSTER_SCORE = new Monster_Score();
 		MONSTER_DIAMOND = new Monster_Diamond();
-		PLAYER = new Player();
+		PLAYER = new Player(0,0);
 		
 		MobileElements = new ArrayList<Mobile>();
 		
@@ -124,6 +124,6 @@ public class ElementFactory {
 			}
 		}
 		
-		return AIR;
+		return new Air();
 	}
 }
