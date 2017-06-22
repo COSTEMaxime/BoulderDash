@@ -1,5 +1,6 @@
 package model.element;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.IElement;
@@ -50,6 +51,8 @@ public class ElementFactory {
 		MONSTER_SCORE = new Monster_Score();
 		MONSTER_DIAMOND = new Monster_Diamond();
 		PLAYER = new Player();
+		
+		MobileElements = new ArrayList<Mobile>();
 		
 		MobileElements.addAll(MobileElements);
 	}
