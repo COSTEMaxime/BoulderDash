@@ -7,7 +7,6 @@ import model.IElement;
 import model.element.mobile.Mobile;
 import model.element.mobile.Player;
 import model.element.mobile.gravity.Diamond;
-import model.element.mobile.gravity.Gravity;
 import model.element.mobile.gravity.Rock;
 import model.element.mobile.monster.Monster_Diamond;
 import model.element.mobile.monster.Monster_Score;
@@ -16,7 +15,6 @@ import model.element.motionless.Amoeba;
 import model.element.motionless.Door;
 import model.element.motionless.Earth;
 import model.element.motionless.Explosion;
-import model.element.motionless.Motionless;
 import model.element.motionless.SpecialWall;
 import model.element.motionless.Wall;
 
@@ -54,7 +52,18 @@ public class ElementFactory {
 		
 		MobileElements = new ArrayList<Mobile>();
 		
-		MobileElements.addAll(MobileElements);
+		MobileElements.add(EARTH);
+		MobileElements.add(AIR);
+		MobileElements.add(WALL);
+		MobileElements.add(SPECIAL_WALL);
+		MobileElements.add(DOOR);
+		MobileElements.add(AMOEBA);
+		MobileElements.add(EXPLOSION);
+		MobileElements.add(ROCK);
+		MobileElements.add(DIAMOND);
+		MobileElements.add(MONSTER_SCORE);
+		MobileElements.add(MONSTER_DIAMOND);
+		MobileElements.add(PLAYER);
 	}
 	
 	public static Mobile createEarth() {
