@@ -2,7 +2,6 @@ package main;
 
 import java.io.IOException;
 import controller.ControllerFacade;
-import model.IElement;
 import model.IModel;
 import model.Model;
 import view.IView;
@@ -26,7 +25,7 @@ public abstract class Main {
      */
     public static void main(final String[] args) throws IOException, InterruptedException {
     	
-    	final IModel model = new Model("level1");
+    	final IModel model = new Model("Map1World1");
     	final IView view = new ViewFacade(model.getMap(), model.getPlayer());
         final ControllerFacade controller = new ControllerFacade(view, model);
         view.setOrderPerformer(controller.getOrderPerformer());

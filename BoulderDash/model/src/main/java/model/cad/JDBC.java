@@ -21,14 +21,14 @@ public class JDBC implements ICAD {
 	private void openConnexion() {
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 
 		try {
 
-			String url = "jdbc:mysql://localhost/boulderdeash?useSSL=false";
+			String url = "jdbc:mysql://localhost/boulderdash?useSSL=false";
 			String login = "root";
 			String passwd = "";
 
@@ -60,7 +60,7 @@ public class JDBC implements ICAD {
 	public ResultSet lireLigneBDD(String nomMap) {
 
 		try {
-			String request = "SELECT * FROM maps WHERE NOM LIKE " + nomMap;
+			String request = "SELECT * FROM maps WHERE mapName LIKE '" + nomMap + "'";
 			return statement.executeQuery(request);
 
 		} catch (SQLException e) {
@@ -83,7 +83,7 @@ public class JDBC implements ICAD {
 			result.add(resultset.getInt(2));
 			result.add(resultset.getInt(3));
 			result.add(resultset.getString(4));
-			result.set(4, ((String) result.get(4)).replaceAll("[\\r\\n]", ""));
+			result.set(2, ((String) result.get(2)).replaceAll("[\\r\\n]", ""));
 			
 
 		} catch (SQLException e) {

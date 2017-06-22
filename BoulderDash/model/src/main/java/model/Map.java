@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observable;
@@ -16,8 +15,6 @@ import model.element.motionless.MotionlessFactory;
 
 public class Map extends Observable implements IMap {
 
-	public static final int borderSize = 2;
-
 	private int width;
 	private int height;
 	private IElement[][] onTheMap;
@@ -30,7 +27,6 @@ public class Map extends Observable implements IMap {
 
 	private void loadMap(final String nomMap) {
 
-		// TEST
 		ICAD cad = new JDBC();
 
 		LinkedList<?> result = cad.load(nomMap);
@@ -43,36 +39,19 @@ public class Map extends Observable implements IMap {
 
 		for (int y = 0; y < this.getHeight(); y++) {
 			for (int x = 0; x < this.getWidth(); x++) {
-				if (y < borderSize || y >= this.getHeight() - borderSize || x < borderSize
-						|| x >= this.getWidth() - borderSize) {
-					this.setOnMapXY(MotionlessFactory.createEarth(), x, y);
-				} else {
-					this.setOnMapXY(MotionlessFactory
-							.getFromFileSymbol(((String) result.get(3)).charAt(x + (y * this.getWidth()))), x, y);
-				}
+
+				this.setOnMapXY(MotionlessFactory
+						.getFromFileSymbol(((String) result.get(2)).charAt(x + (y * (this.getWidth())))), x, y);
 			}
 		}
-
-		/*
-		 * for (int y = 0; y < this.getHeight(); y++) { for (int x = 0; x <
-		 * this.getWidth(); x++) { if (y < borderSize || y >= this.getHeight() -
-		 * borderSize || x < borderSize || x >= this.getWidth() - borderSize) {
-		 * this.setOnMapXY(MotionlessFactory.createEarth(), x, y); } else {
-		 * this.setOnMapXY(MotionlessFactory.getFromFileSymbol('X'), x, y); } }
-		 * } this.setOnMapXY(MotionlessFactory.createAir(), 5, 7);
-		 * this.setOnMapXY(MotionlessFactory.createAir(), 5, 4);
-		 * this.setOnMapXY(MotionlessFactory.createAir(), 5, 3);
-		 * this.setOnMapXY(MotionlessFactory.createAir(), 5, 6);
-		 * this.setOnMapXY(MotionlessFactory.createAir(), 5, 5);
-		 */
 	}
 
 	@Override
 	public void update() {
 
 		// améliorable en prenant en compte les bordures
-		for (int y = this.getHeight() - 2 - borderSize; y >= borderSize; y--) {
-			for (int x = borderSize; x < this.getWidth() - borderSize; x++) {
+		for (int y = this.getHeight() - 2; y >= 0; y--) {
+			for (int x = 0; x < this.getWidth(); x++) {
 
 				// si l'objet est un objet soumit à la gravité
 				if (this.getMapXY(x, y).getClass() == Diamond.class || this.getMapXY(x, y).getClass() == Rock.class) {
@@ -134,11 +113,11 @@ public class Map extends Observable implements IMap {
 	}
 
 	private void setWidth(final int width) {
-		this.width = width + 2 * borderSize;
+		this.width = width;
 	}
 
 	private void setHeight(final int height) {
-		this.height = height + 2 * borderSize;
+		this.height = height;
 	}
 
 	@Override
