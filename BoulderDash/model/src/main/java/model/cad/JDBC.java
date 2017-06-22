@@ -14,10 +14,18 @@ public class JDBC implements ICAD {
 	private Connection connexion;
 	private Statement statement;
 
+	/**
+	 * Instantiates a new JDBC object (Useful for connections with a database)
+	 * 
+	 */
 	public JDBC() {
 		openConnexion();
 	}
 
+	/**
+	 * Opens a connection with database
+	 * 
+	 */
 	private void openConnexion() {
 
 		try {
@@ -40,6 +48,10 @@ public class JDBC implements ICAD {
 		}
 	}
 
+	/**
+	 * Close connection with database
+	 * 
+	 */
 	public void closeConnexion() {
 
 		if (this.connexion != null)
@@ -57,6 +69,12 @@ public class JDBC implements ICAD {
 			}
 	}
 
+	/**
+	 * Reads a line from a table in database
+	 * 
+	 * @param nomMap
+	 * @return
+	 */
 	public ResultSet lireLigneBDD(String nomMap) {
 
 		try {
@@ -70,6 +88,10 @@ public class JDBC implements ICAD {
 		}
 	}
 
+	/**
+	 * Loads a map from database to program
+	 * 
+	 */
 	@Override
 	public LinkedList<Comparable> load(String nomMap) {
 		

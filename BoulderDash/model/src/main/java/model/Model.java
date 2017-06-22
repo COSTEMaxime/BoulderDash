@@ -2,12 +2,22 @@ package model;
 
 import model.element.mobile.Player;
 
+/**
+ * 
+ * @author Pierre Mazurier
+ *
+ */
+
 public class Model implements IModel {
 	
 	private IMap map;
 	private IMobile player;
 	
-	// startX and startY = player starting point
+	/**
+	 * Instantiates new model
+	 * 
+	 * @param fileName
+	 */
 	public Model(String fileName) {
 		
 		// Create new map
@@ -17,18 +27,36 @@ public class Model implements IModel {
 		this.setPlayer(new Player(0, 0));
 	}
 
+	/**
+	 * Returns map
+	 * 
+	 */
 	public IMap getMap() {
 		return map;
 	}
 
+	/**
+	 * Sets map
+	 * 
+	 * @param map
+	 */
 	public void setMap(IMap map) {
 		this.map = map;
 	}
 
+	/**
+	 * Returns the player
+	 * 
+	 */
 	public IMobile getPlayer() {
 		return this.player;
 	}
 
+	/**
+	 * Sets player
+	 * 
+	 * @param player
+	 */
 	public void setPlayer(IMobile player) {
 		this.player = player;
 	}
