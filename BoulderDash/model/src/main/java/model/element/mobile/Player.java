@@ -1,6 +1,7 @@
 package model.element.mobile;
 
 import java.awt.Image;
+import java.awt.Point;
 
 import model.IMap;
 import model.Sprite;
@@ -15,28 +16,28 @@ public class Player extends Mobile {
 	private static Sprite spriteLeft = new Sprite(model.UserOrder.LEFT);
 	private static Sprite spriteRight = new Sprite(model.UserOrder.RIGHT);
 	private static Sprite spriteDie = new Sprite(model.UserOrder.NOP);
-	
+
 	private int score = 0;
 	private int diamondCount = 0;
 	private int lives = 4;
-	
+
 	public Player(int x, int y, IMap map) {
 		super(x, y, spriteDef, map, model.Permeability.BLOCKING);
 		this.lives = 4;
 		this.score = 0;
 		this.diamondCount = 0;
 	}
-	
+
 	// Change null to something else ...
 	public Player() {
 		super(null, model.Permeability.PENETRABLE);
 	}
-	
+
 	public void moveUp() {
 		super.moveUp();
 		this.setSprite(spriteUp);
 	}
-	
+
 	public void moveDown() {
 		super.moveDown();
 		this.setSprite(spriteDown);
@@ -51,12 +52,12 @@ public class Player extends Mobile {
 		super.moveRight();
 		this.setSprite(spriteRight);
 	}
-	
+
 	public void doNothing() {
 		super.doNothing();
 		this.setSprite(spriteDef);
 	}
-	
+
 	public void die() {
 		super.die();
 		this.setSprite(spriteDie);
@@ -69,7 +70,7 @@ public class Player extends Mobile {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
+
 	public void addScore(int score) {
 		this.score += score;
 	}
@@ -81,7 +82,7 @@ public class Player extends Mobile {
 	public void setDiamondCount(int diamondCount) {
 		this.diamondCount = diamondCount;
 	}
-	
+
 	public void addDiamond(int diamond) {
 		this.diamondCount += diamond;
 	}
@@ -93,14 +94,13 @@ public class Player extends Mobile {
 	public void setLives(int lives) {
 		this.lives = lives;
 	}
-	
+
 	public void addLives(int lives) {
 		this.lives = lives;
 	}
-	
+
 	@Override
-	public Image getImage() {
-		// TODO Auto-generated method stub
-		return null;
+	public Point getPosition() {
+		return new Point(this.getX(), this.getY());
 	}
 }

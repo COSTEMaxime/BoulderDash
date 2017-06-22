@@ -32,22 +32,7 @@ public interface IMobile extends IPawn, IElement {
      */
     void doNothing();
 
-    /**
-     * Gets the x.
-     *
-     * @return the x
-     */
-    @Override
-    int getX();
-
-    /**
-     * Gets the y.
-     *
-     * @return the y
-     */
-    @Override
-    int getY();
-
+  
     /**
      * Checks if is alive.
      *

@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import model.cad.JDBC;
 import model.element.ElementFactory;
+import model.element.mobile.Mobile;
 import model.element.mobile.Player;
 import model.element.mobile.gravity.Diamond;
 import model.element.mobile.gravity.Gravity;
@@ -19,10 +20,8 @@ public class Map extends Observable implements IMap {
 	private int width;
 	private int height;
 	private IElement[][] onTheMap;
-	private ArrayList<IElement> updateList;
 
 	public Map(final String mapName) {
-		this.updateList = new ArrayList<IElement>();
 		loadMap(mapName);
 	}
 
@@ -53,12 +52,13 @@ public class Map extends Observable implements IMap {
 		for (int y = this.getHeight() - 2; y >= 0; y--) {
 			for (int x = 0; x < this.getWidth(); x++) {
 
-				System.out.println(this.getMapXY(x, y));
+				//System.out.println(this.getMapXY(x, y));
 				// si l'objet est un objet soumit à la gravité
 				if (this.getMapXY(x, y).getClass() == Diamond.class || this.getMapXY(x, y).getClass() == Rock.class) {
 
 					// si il y a de l'air juste en dessous alors l'objet tombe
 					if (this.getMapXY(x, y + 1).equals(ElementFactory.createAir())) {
+						((Mobile) this.getMapXY(x, y)).moveDown();
 						((Gravity) this.getMapXY(x, y)).setFalling(true);
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
 						this.setOnMapXY(ElementFactory.createAir(), x, y);
@@ -70,7 +70,7 @@ public class Map extends Observable implements IMap {
 							&& ((Gravity) this.getMapXY(x, y)).isFalling()) {
 
 						((Player) this.getMapXY(x, y + 1)).die();
-						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
+						((Mobile) this.getMapXY(x, y)).moveDown();
 						this.setOnMapXY(ElementFactory.createAir(), x, y);
 						continue;
 						// si il y a un rocher en dessous
@@ -82,7 +82,7 @@ public class Map extends Observable implements IMap {
 								&& this.getMapXY(x - 1, y + 1).equals(ElementFactory.createAir())) {
 
 							((Gravity) this.getMapXY(x, y)).setFalling(true);
-							this.setOnMapXY(this.getMapXY(x, y), x - 1, y);
+							((Mobile) this.getMapXY(x, y)).moveLeft();
 							this.setOnMapXY(ElementFactory.createAir(), x, y);
 							continue;
 
@@ -91,7 +91,7 @@ public class Map extends Observable implements IMap {
 								&& this.getMapXY(x + 1, y + 1).equals(ElementFactory.createAir())) {
 
 							((Gravity) this.getMapXY(x, y)).setFalling(true);
-							this.setOnMapXY(this.getMapXY(x, y), x + 1, y);
+							((Mobile) this.getMapXY(x, y)).moveRight();
 							this.setOnMapXY(ElementFactory.createAir(), x, y);
 							continue;
 						}
