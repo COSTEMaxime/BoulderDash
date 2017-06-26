@@ -19,4 +19,6 @@ public interface IView {
     void followMyCharacter();
 
 	void setOrderPerformer(IOrderPerformer orderPerformer);
+
+	void syncWithMap();
 }

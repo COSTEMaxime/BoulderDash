@@ -69,6 +69,7 @@ public class Map extends Observable implements IMap {
 						x, y);
 			}
 		}
+		this.setOnMapXY(ElementFactory.createDiamond(), 0, 0);
 	}
 
 	/**
@@ -82,7 +83,7 @@ public class Map extends Observable implements IMap {
 		// améliorable en prenant en compte les bordures
 		for (int y = this.getHeight() - 2; y >= 0; y--) {
 			for (int x = 0; x < this.getWidth(); x++) {
-
+				
 				// si l'objet est un objet soumit à la gravité
 				if (this.getMapXY(x, y).getClass() == Diamond.class || this.getMapXY(x, y).getClass() == Rock.class) {
 
@@ -90,12 +91,8 @@ public class Map extends Observable implements IMap {
 					if (this.getMapXY(x, y + 1).getClass() == Air.class) {
 						((Gravity) this.getMapXY(x, y)).setFalling(true);
 						((Mobile) this.getMapXY(x, y)).moveDown();
-						// System.out.println(this.getMapXY(x, y));
 						this.setOnMapXY(this.getMapXY(x, y), x, y + 1);
-
-						System.out.println(this.getMapXY(x, y + 1));
 						this.setOnMapXY(ElementFactory.createAir(), x, y);
-						System.out.println(this.getMapXY(x, y));
 						continue;
 
 						// si il y a le joueur en dessous et que l'objet est
@@ -144,7 +141,6 @@ public class Map extends Observable implements IMap {
 
 			}
 		}
-		this.setMobileHasChanged();
 	}
 
 	/**
@@ -212,6 +208,8 @@ public class Map extends Observable implements IMap {
 	}
 
 	private void setOnMapXY(final IElement element, final int x, final int y) {
+		((IMobile) element).setX(x);
+		((IMobile) element).setY(y);
 		this.onTheMap[x][y] = element;
 	}
 

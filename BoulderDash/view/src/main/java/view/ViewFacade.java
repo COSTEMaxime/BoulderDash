@@ -43,11 +43,13 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	private IMobile character;
 
 	private int xView;
-  
+
 	private int yView;
 
 	private IOrderPerformer orderPerformer;
-
+	
+	private BoardFrame boardFrame;
+	
 	/**
 	 * Instantiates a new view facade.
 	 * 
@@ -59,8 +61,8 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 		this.setXView(0);
 		this.setYView(0);
 
-		//changer méthode pour le personnage
-		//this.getMyCharacter().getSprite().loadImage();
+		// changer méthode pour le personnage
+		// this.getMyCharacter().getSprite().loadImage();
 		this.setCloseView(new Rectangle(xView, yView, widthView, heightView));
 		SwingUtilities.invokeLater(this);
 	}
@@ -77,79 +79,90 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	@Override
 	public void run() {
-		
-		final BoardFrame boardFrame = new BoardFrame("Boulderdash");
-        boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
-        System.out.println(this.getMap().getWidth() + " " + this.getMap().getHeight());
-        boardFrame.setDisplayFrame(this.closeView);
-        boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
-        boardFrame.setHeightLooped(true);
-        boardFrame.addKeyListener(this);
-        boardFrame.setFocusable(true);
-        boardFrame.setFocusTraversalKeysEnabled(false);
 
-        
-        boardFrame.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		
-        		/*	à changer	*/
-        		/*
-        		for (int y = 0; y < getMap().getHeight(); y++) {
-                    for (int x = 0; x < getMap().getWidth(); x++) {
-                        boardFrame.addSquare(getMap().getMapXY(x, y), x, y);
-                    }
-                }*/
-        		boardFrame.repaint();
-        		show();
-        	}
+		boardFrame = new BoardFrame("Boulderdash");
+		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
+		System.out.println(this.getMap().getWidth() + " " + this.getMap().getHeight());
+		boardFrame.setDisplayFrame(this.closeView);
+		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
+		boardFrame.setHeightLooped(true);
+		boardFrame.addKeyListener(this);
+		boardFrame.setFocusable(true);
+		boardFrame.setFocusTraversalKeysEnabled(false);
+
+		boardFrame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				/* à changer */
+				/*
+				 * for (int y = 0; y < getMap().getHeight(); y++) { for (int x =
+				 * 0; x < getMap().getWidth(); x++) {
+				 * boardFrame.addSquare(getMap().getMapXY(x, y), x, y); } }
+				 */
+				boardFrame.repaint();
+				show();
+			}
 		});
-        
-        
-        for (int y = 0; y < this.getMap().getHeight(); y++) {
-            for (int x = 0; x < this.getMap().getWidth(); x++) {
-                boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
-            	((IMobile) this.getMap().getMapXY(x, y)).setX(x);
-            	((IMobile) this.getMap().getMapXY(x, y)).setY(y);
-                boardFrame.addPawn((IPawn) this.getMap().getMapXY(x, y));
-            }
-        } 
-        
-        this.show();
-        
-        //boardFrame.addPawn(this.getMyCharacter());
-        this.getMap().getObservable().addObserver(boardFrame.getObserver());
-        //this.followMyCharacter();
-        
-        boardFrame.setVisible(true);
+
+		for (int y = 0; y < this.getMap().getHeight(); y++) {
+			for (int x = 0; x < this.getMap().getWidth(); x++) {
+				boardFrame.addSquare(this.getMap().getMapXY(x, y), x, y);
+				((IMobile) this.getMap().getMapXY(x, y)).setX(x);
+				((IMobile) this.getMap().getMapXY(x, y)).setY(y);
+				boardFrame.addPawn((IPawn) this.getMap().getMapXY(x, y));
+			}
+		}
+
+		this.show();
+
+		// boardFrame.addPawn(this.getMyCharacter());
+		this.getMap().getObservable().addObserver(boardFrame.getObserver());
+		// this.followMyCharacter();
+
+		boardFrame.setVisible(true);
 
 	}
-	
+
 	public final void show() {
-		
-        for (int y = 0; y < this.getMap().getHeight(); y++) {
-            for (int x = 0; x < this.getMap().getWidth(); x++) {
-                    System.out.print(this.getMap().getMapXY(x, y).getSprite().getConsoleImage());
-                }
-            System.out.print("\n");
-            }
-            
-        }
+
+		for (int y = 0; y < this.getMap().getHeight(); y++) {
+			for (int x = 0; x < this.getMap().getWidth(); x++) {
+				System.out.print(this.getMap().getMapXY(x, y).getSprite().getConsoleImage());
+			}
+			System.out.print("\n");
+		}
+
+	}
+
+	@Override
+	public void syncWithMap() {
+		boardFrame.clearPawns();
+		for (int y = 0; y < this.getMap().getHeight(); y++) {
+			for (int x = 0; x < this.getMap().getWidth(); x++) {
+				((IMobile) this.getMap().getMapXY(x, y)).setX(x);
+				((IMobile) this.getMap().getMapXY(x, y)).setY(y);
+				boardFrame.addPawn((IPawn) this.getMap().getMapXY(x, y));
+			}
+		}
+
+	}
 
 	public final void followMyCharacter() {
+
+		/* à revoir */
 		
-		/*	à revoir	*/
-		if (getMyCharacter().getX() < ViewFacade.borderOffset)
-			this.setXView(this.getXView() + 1);
+		if (getMyCharacter().getX() < ViewFacade.borderOffset + this.getCloseView().x)
+			this.getCloseView().x = this.getXView() - 1;
 
-		if (getMyCharacter().getX() > this.getMap().getWidth() - ViewFacade.borderOffset)
-			this.setXView(getXView() - 1);
+		if (getMyCharacter().getX() > widthView - ViewFacade.borderOffset - this.getCloseView().x)
+			this.getCloseView().x = this.getXView() + 1;
 
-		if (getMyCharacter().getY() < ViewFacade.borderOffset)
-			this.setYView(this.getYView() + 1);
+		if (getMyCharacter().getY() < ViewFacade.borderOffset + this.getCloseView().y)
+			this.getCloseView().y = this.getXView() - 1;
 
-		if (getMyCharacter().getY() > this.getMap().getHeight() - ViewFacade.borderOffset)
-			this.setYView(getYView() - 1);
+		if (getMyCharacter().getY() > heightView - ViewFacade.borderOffset - this.getCloseView().y)
+			this.getCloseView().y = this.getXView() + 1;
 	}
 
 	private static UserOrder keyCodeToUserOrder(final int keyCode) {
@@ -171,11 +184,11 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	public void keyPressed(KeyEvent keyEvent) {
 		try {
 			System.out.println(keyEvent.getKeyCode());
-			System.out.println(keyCodeToUserOrder(keyEvent.getKeyCode())); 
-            this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
-        } catch (final IOException exception) {
-            exception.printStackTrace();
-        }
+			System.out.println(keyCodeToUserOrder(keyEvent.getKeyCode()));
+			this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
+		} catch (final IOException exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	@Override
@@ -186,6 +199,10 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent keyEvent) {
 
+	}
+	
+	private Rectangle getCloseView()	{
+		return this.closeView;
 	}
 
 	private IMobile getMyCharacter() {
@@ -223,12 +240,12 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	public int getYView() {
 		return this.yView;
 	}
-	
+
 	private IOrderPerformer getOrderPerformer() {
 		return this.orderPerformer;
 	}
-	
-	public void setOrderPerformer(IOrderPerformer orderPerformer)	{
+
+	public void setOrderPerformer(IOrderPerformer orderPerformer) {
 		this.orderPerformer = orderPerformer;
 	}
 }

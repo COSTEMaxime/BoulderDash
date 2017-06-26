@@ -23,7 +23,7 @@ public class ControllerFacade implements IController, IOrderPerformer {
 
 	private UserOrder stackOrder;
 
-	public static final int speed = 250;
+	public static final int delay = 200;
 
 	/**
 	 * Instantiates a new controller facade.
@@ -43,7 +43,8 @@ public class ControllerFacade implements IController, IOrderPerformer {
 	public void play() throws InterruptedException {
 
 		while (this.getModel().getPlayer().isAlive()) {
-			Thread.sleep(speed);
+			Thread.sleep(delay);
+
 			switch (this.getStackOrder()) {
 
 			case DOWN:
@@ -64,6 +65,9 @@ public class ControllerFacade implements IController, IOrderPerformer {
 			}
 			this.clearStackOrder();
 			this.getModel().getMap().update();
+			this.getView().syncWithMap();
+			this.getView().followMyCharacter();
+			this.getModel().getMap().setMobileHasChanged();
 		}
 	}
 
